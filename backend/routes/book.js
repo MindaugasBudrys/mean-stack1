@@ -15,6 +15,7 @@ router.get('/:id', function(req, res, next) {
     if (err) return next(err);
     res.json(post);
   });
+  
 });
 /* SAVE BOOK */
 router.post('/', function(req, res, next) {

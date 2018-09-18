@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
+var cors = require('cors');
 
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/mean-angular6', { promiseLibrary: require('bluebird') })
@@ -11,6 +12,8 @@ mongoose.connect('mongodb://localhost/mean-angular6', { promiseLibrary: require(
 
 var apiRouter = require('./routes/book');
 var app = express();
+
+app.use(cors());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -31,3 +34,4 @@ app.use(function(err, req, res, next) {
   res.send(err.status);
 });
 module.exports = app;
+
