@@ -3,7 +3,7 @@
  * Module dependencies.
  */
 var app = require('../app');
-var debug = require('debug')('mean-angular6:server');
+var debug = require('debug')('../../mean-angular6:server');
 var http = require('http');
 /**
  * Get port from environment and store in Express.
