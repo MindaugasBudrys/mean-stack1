@@ -6,7 +6,9 @@ import { catchError, tap, map } from 'rxjs/operators';
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
 };
-const apiUrl = "http://52.59.195.40:3000/api"; 
+// const apiUrl = "http://52.59.195.40:3000/api";
+const apiUrl = "http://localhost:3000/api";
+
 
 @Injectable({
   providedIn: 'root'
@@ -60,6 +62,7 @@ export class ApiService {
   }
   updateBook(data): Observable<any> {
     console.log(apiUrl);
+    console.log(data);
     return this.http.put(apiUrl, data, httpOptions)
       .pipe(
         catchError(this.handleError)

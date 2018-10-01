@@ -11,6 +11,7 @@ import { Observable } from 'rxjs';
 export class BookComponent implements OnInit {
 
   books: any;
+  audio:any;
 
   displayedColumns = ['isbn', 'title', 'author'];
   dataSource = new BookDataSource(this.api);
@@ -18,6 +19,13 @@ export class BookComponent implements OnInit {
   constructor(private api: ApiService) { }
 
   ngOnInit() {
+
+  // this.audio = new Audio();
+  // this.audio.src = "../../../assets/sounds/test1.mp3";
+  // this.audio.load();
+  // this.audio.play();
+  // console.log("audio?");
+    
   this.api.getBooks()
     .subscribe(res => {
       console.log(res);
