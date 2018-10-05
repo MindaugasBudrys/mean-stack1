@@ -11,6 +11,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MusicPlayerComponent } from './music-player/music-player.component';
 
 import {
   MatInputModule,
@@ -57,7 +58,8 @@ const appRoutes: Routes = [
     BookComponent,
     BookDetailComponent,
     BookCreateComponent,
-    BookEditComponent
+    BookEditComponent,
+    MusicPlayerComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
