@@ -6,9 +6,51 @@ var logger = require('morgan');
 var cors = require('cors');
 
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/mean-angular6', { promiseLibrary: require('bluebird') })
-  .then(() =>  console.log('connection successful'))
-  .catch((err) => console.error(err));
+var fs = require('fs');
+var Grid = require('gridfs-stream');
+ 
+// var conn = mongoose.createConnection('mongodb://localhost/mean-angular6');
+
+mongoose.connect('mongodb://localhost/mean-angular6');
+var conn = mongoose.connection;
+
+ 
+// var conn = mongoose.connect('mongodb://localhost/mean-angular6', { promiseLibrary: require('bluebird') })
+//   .then(() =>  console.log('connection successful'))
+//   .catch((err) => console.error(err));
+
+  conn.once('open', function () {
+    var gfs = Grid(conn.db, mongoose.mongo);
+
+
+    // //filename to store in mongodb
+    // var writestream = gfs.createWriteStream({
+    //     filename: 'wutang.mp3'
+    // });
+    // fs.createReadStream('/jybanstestas/wutang.mp3').pipe(writestream);
+ 
+    // writestream.on('close', function (file) {
+    //     // do something with `file`
+    //     console.log(file.filename + 'Written To DB');
+    // });
+
+    // var testjebat = {
+    //   _id: '50e03d29edfdc00d34000001', // a MongoDb ObjectId
+    //   filename: 'my_file.txt', // a filename
+    //   mode: 'w', // default value: w
+    // }
+
+
+    gfs.files.find({ filename: 'wutang.mp3' }).toArray(function (err, files) {
+      if (err) {
+           throw (err);
+      }
+      console.log(files);
+    });
+
+
+
+  })
 
 var apiRouter = require('./routes/book');
 var app = express();
@@ -36,4 +78,3 @@ app.use(function(err, req, res, next) {
   res.send(err.status);
 });
 module.exports = app;
-
