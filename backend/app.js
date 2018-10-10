@@ -7,53 +7,97 @@ var cors = require('cors');
 
 var mongoose = require('mongoose');
 var fs = require('fs');
-var Grid = require('gridfs-stream');
+var gridfs = require('gridfs-stream');
+
+
+var apiRouter = require('./routes/book');
+
+var app = express();
  
 // var conn = mongoose.createConnection('mongodb://localhost/mean-angular6');
 
-mongoose.connect('mongodb://localhost/mean-angular6');
-var conn = mongoose.connection;
+mongoose.connect('mongodb://localhost:27017/mean-angular6')
+mongoose.Promise = global.Promise;
 
- 
-// var conn = mongoose.connect('mongodb://localhost/mean-angular6', { promiseLibrary: require('bluebird') })
-//   .then(() =>  console.log('connection successful'))
-//   .catch((err) => console.error(err));
+gridfs.mongo = mongoose.mongo;
 
-  conn.once('open', function () {
-    var gfs = Grid(conn.db, mongoose.mongo);
+var connection = mongoose.connection;
+connection.on('error', console.error.bind(console, 'connection error:'));
 
+connection.once('open', () => {
 
-    // //filename to store in mongodb
-    // var writestream = gfs.createWriteStream({
-    //     filename: 'wutang.mp3'
-    // });
-    // fs.createReadStream('/jybanstestas/wutang.mp3').pipe(writestream);
- 
-    // writestream.on('close', function (file) {
-    //     // do something with `file`
-    //     console.log(file.filename + 'Written To DB');
-    // });
+  var gfs = gridfs(connection.db);
 
-    // var testjebat = {
-    //   _id: '50e03d29edfdc00d34000001', // a MongoDb ObjectId
-    //   filename: 'my_file.txt', // a filename
-    //   mode: 'w', // default value: w
-    // }
+  app.get('/', (req, res) => {
+      res.send('Download/Upload GridFS files to MongoDB <br>- by JavaSampleApproach.com');
+  });
 
+  // Upload a file from loca file-system to MongoDB
+  app.get('/api/file/upload', (req, res) => {
+  
+  var filename = req.query.filename;
+  
+      var writestream = gfs.createWriteStream({ filename: filename });
+      fs.createReadStream(__dirname + "/public/" + filename).pipe(writestream);
+      writestream.on('close', (file) => {
+          res.send('Stored File: ' + file.filename);
+      });
+  });
 
-    gfs.files.find({ filename: 'wutang.mp3' }).toArray(function (err, files) {
-      if (err) {
-           throw (err);
-      }
-      console.log(files);
+  // Download a file from MongoDB - then save to local file-system
+  app.get('/api/file/download', (req, res) => {
+      // Check file exist on MongoDB
+  
+  var filename = req.query.filename;
+  
+      gfs.exist({ filename: filename }, (err, file) => {
+          if (err || !file) {
+              res.status(404).send('File Not Found');
+      return
+          } 
+    
+    var readstream = gfs.createReadStream({ filename: filename });
+    readstream.pipe(res);            
+      });
+  });
+
+  // Delete a file from MongoDB
+  app.get('/api/file/delete', (req, res) => {
+  
+  var filename = req.query.filename;
+  
+  gfs.exist({ filename: filename }, (err, file) => {
+    if (err || !file) {
+      res.status(404).send('File Not Found');
+      return;
+    }
+    
+    gfs.remove({ filename: filename }, (err) => {
+      if (err) res.status(500).send(err);
+      res.send('File Deleted');
     });
+  });
+  });
 
+  // Get file information(File Meta Data) from MongoDB
+  app.get('/api/file/meta', (req, res) => {
+    
+    var filename = req.query.filename;
+    
+    gfs.exist({ filename: filename }, (err, file) => {
+      if (err || !file) {
+        res.send('File Not Found');
+        return;
+      }
+      
+      gfs.files.find({ filename: filename }).toArray( (err, files) => {
+        if (err) res.send(err);
+        res.json(files);
+      });
+    });
+  });
+});
 
-
-  })
-
-var apiRouter = require('./routes/book');
-var app = express();
 
 app.use(cors());
 app.use(logger('dev'));
@@ -63,11 +107,15 @@ app.use(express.static(path.join(__dirname, '../frontend/dist/mean-angular6')));
 app.use('/', express.static(path.join(__dirname, '../frontend/dist/mean-angular6')));
 app.use('/api', apiRouter);
 // app.use('/xd', express.static('public'));
-app.use(express.static('public'))
+// app.use(express.static('public'))
+
+
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
-});
+// app.use(function(req, res, next) {
+//   next(createError(404));
+// });
+
+
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
