@@ -30,10 +30,18 @@
               </i>
           </button>
 
-          <button class="controlButton play mat-icon-button" title="Play button" alt="Play">
+          <button class="controlButton play mat-icon-button" (click)="pressedButton()" title="Play button" alt="Play">
+            <div *ngIf="!currentlyPlaying">
               <i class="material-icons md-48">
                 play_circle_outline
               </i>
+            </div>
+
+            <div *ngIf="currentlyPlaying">
+              <i class="material-icons md-48">
+                pause_circle_outline
+              </i>
+            </div>
           </button>
 
           <button class="controlButton skip-next mat-icon-button" title="Skip next button" alt="Next">
