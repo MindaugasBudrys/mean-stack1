@@ -1,50 +1,57 @@
 <div class="button-row">
   <a mat-raised-button color="primary" [routerLink]="['/books']"><mat-icon>list</mat-icon></a>
 </div>
-<form [formGroup]="bookForm" (ngSubmit)="onFormSubmit(bookForm.value)">
+<form [formGroup]="songForm" (ngSubmit)="onFormSubmit(songForm.value)">
   <mat-form-field class="example-full-width">
-    <input matInput placeholder="ISBN" formControlName="isbn"
+    <input matInput placeholder="ARTIST NAME" formControlName="artist_name"
            [errorStateMatcher]="matcher">
     <mat-error>
-      <span *ngIf="!bookForm.get('isbn').valid && bookForm.get('isbn').touched">Please enter ISBN</span>
+      <span *ngIf="!songForm.get('artist_name').valid && songForm.get('artist_name').touched">Please enter ISBN</span>
     </mat-error>
   </mat-form-field>
   <mat-form-field class="example-full-width">
-    <input matInput placeholder="Title" formControlName="title"
+    <input matInput placeholder="SONG TITLE" formControlName="song_title"
            [errorStateMatcher]="matcher">
     <mat-error>
-      <span *ngIf="!bookForm.get('title').valid && bookForm.get('title').touched">Please enter Book Title</span>
+      <span *ngIf="!songForm.get('song_title').valid && songForm.get('song_title').touched">Please enter Book Title</span>
     </mat-error>
   </mat-form-field>
   <mat-form-field class="example-full-width">
-    <input matInput placeholder="Author" formControlName="author"
+    <input matInput placeholder="Description" formControlName="description"
            [errorStateMatcher]="matcher">
     <mat-error>
-      <span *ngIf="!bookForm.get('author').valid && bookForm.get('author').touched">Please enter Book Author</span>
+      <span *ngIf="!songForm.get('description').valid && songForm.get('description').touched">Please enter Book Author</span>
     </mat-error>
   </mat-form-field>
   <mat-form-field class="example-full-width">
-    <textarea matInput placeholder="Description" formControlName="description"
+    <textarea matInput placeholder="DURATION" formControlName="length"
            [errorStateMatcher]="matcher"></textarea>
     <mat-error>
-      <span *ngIf="!bookForm.get('description').valid && bookForm.get('description').touched">Please enter Book Description</span>
+      <span *ngIf="!songForm.get('length').valid && songForm.get('length').touched">Please enter Book Description</span>
     </mat-error>
   </mat-form-field>
   <mat-form-field class="example-full-width">
-    <input matInput placeholder="Publisher" formControlName="publisher"
+    <input matInput placeholder="YEAR" formControlName="published_year"
            [errorStateMatcher]="matcher">
     <mat-error>
-      <span *ngIf="!bookForm.get('publisher').valid && bookForm.get('publisher').touched">Please enter Publisher</span>
+      <span *ngIf="!songForm.get('published_year').valid && songForm.get('published_year').touched">Please enter Publisher</span>
     </mat-error>
   </mat-form-field>
   <mat-form-field class="example-full-width">
-    <input matInput placeholder="Published Year" formControlName="published_year"
+    <input matInput placeholder="Record label" formControlName="record_label"
            [errorStateMatcher]="matcher">
     <mat-error>
-      <span *ngIf="!bookForm.get('published_year').valid && bookForm.get('published_year').touched">Please enter Published Year</span>
+      <span *ngIf="!songForm.get('record_label').valid && songForm.get('record_label').touched">Please enter Published Year</span>
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <textarea matInput placeholder="FILE ID" formControlName="file_id"
+           [errorStateMatcher]="matcher"></textarea>
+    <mat-error>
+      <span *ngIf="!songForm.get('file_id').valid && songForm.get('file_id').touched">Please enter Book Description</span>
     </mat-error>
   </mat-form-field>
   <div class="button-row">
-    <button type="submit" [disabled]="!bookForm.valid" mat-raised-button color="primary"><mat-icon>save</mat-icon></button>
+    <button type="submit" [disabled]="!songForm.valid" mat-raised-button color="primary"><mat-icon>save</mat-icon></button>
   </div>
 </form>

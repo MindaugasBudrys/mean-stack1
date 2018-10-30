@@ -10,7 +10,7 @@ var fs = require('fs');
 var gridfs = require('gridfs-stream');
 
 
-var apiRouter = require('./routes/book');
+var apiRouter = require('./routes/song');
 
 var app = express();
  
@@ -45,19 +45,21 @@ connection.once('open', () => {
   });
 
   // Download a file from MongoDB - then save to local file-system
+  // streams/downloads file by object id
   app.get('/api/file/download', (req, res) => {
       // Check file exist on MongoDB
   
   var filename = req.query.filename;
+  var objectID = req.query.objectID;
   
-      gfs.exist({ filename: filename }, (err, file) => {
+      gfs.exist({ _id: objectID}, (err, file) => {
           if (err || !file) {
               res.status(404).send('File Not Found');
       return
           } 
     
-    var readstream = gfs.createReadStream({ filename: filename });
-    readstream.pipe(res);            
+    var readstream = gfs.createReadStream({ _id: objectID });
+    readstream.pipe(res);
       });
   });
 

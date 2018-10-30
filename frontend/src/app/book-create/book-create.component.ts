@@ -11,29 +11,31 @@ import { FormControl, FormGroupDirective, FormBuilder, FormGroup, NgForm, Valida
 export class BookCreateComponent implements OnInit {
 
 
-  bookForm: FormGroup;
-  isbn:string='';
-  title:string='';
+  songForm: FormGroup;
+  artist_name:string='';
+  song_title:string='';
   description:string='';
-  author:string='';
-  publisher:string='';
+  length:string='';
   published_year:string='';
+  record_label:string='';
+  file_id:string='';
 
   constructor(private router: Router, private api: ApiService, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
-    this.bookForm = this.formBuilder.group({
-      'isbn' : [null, Validators.required],
-      'title' : [null, Validators.required],
+    this.songForm = this.formBuilder.group({
+      'artist_name' : [null, Validators.required],
+      'song_title' : [null, Validators.required],
       'description' : [null, Validators.required],
-      'author' : [null, Validators.required],
-      'publisher' : [null, Validators.required],
-      'published_year' : [null, Validators.required]
+      'length' : [null, Validators.required],
+      'published_year' : [null, Validators.required],
+      'record_label' : [null, Validators.required],
+      'file_id' : [null, Validators.required]
     });
   }
 
   onFormSubmit(form:NgForm) {
-    this.api.postBook(form)
+    this.api.postSong(form)
       .subscribe(res => {
           let id = res['_id'];
           this.router.navigate(['/book-details', id]);

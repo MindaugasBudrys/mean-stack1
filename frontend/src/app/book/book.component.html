@@ -6,22 +6,23 @@
     <!--- Note that these columns can be defined in any order.
           The actual rendered columns are set as a property on the row definition" -->
     <!-- Title Column -->
-    <ng-container matColumnDef="isbn">
-      <th mat-header-cell *matHeaderCellDef> ISBN </th>
-      <td mat-cell *matCellDef="let element" class="isbn-col"> {{element.isbn}} </td>
+    <ng-container matColumnDef="song_title">
+      <th mat-header-cell *matHeaderCellDef> Title </th>
+      <td mat-cell *matCellDef="let element" class="isbn-col"> {{element.song_title}} </td>
     </ng-container>
     <!-- Title Column -->
-    <ng-container matColumnDef="title">
-      <th mat-header-cell *matHeaderCellDef> Title </th>
-      <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+    <ng-container matColumnDef="artist_name">
+      <th mat-header-cell *matHeaderCellDef> Artist </th>
+      <td mat-cell *matCellDef="let element"> {{element.artist_name}} </td>
     </ng-container>
     <!-- Author Column -->
-    <ng-container matColumnDef="author">
-      <th mat-header-cell *matHeaderCellDef> Author </th>
-      <td mat-cell *matCellDef="let element"> {{element.author}} </td>
+    <ng-container matColumnDef="published_year">
+      <th mat-header-cell *matHeaderCellDef> Year </th>
+      <td mat-cell *matCellDef="let element"> {{element.published_year}} </td>
     </ng-container>
+
+    
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;" [routerLink]="['/book-details/', row._id]"></tr>
   </table>
 </div>
-<app-music-player></app-music-player>

@@ -10,11 +10,11 @@ import { Observable } from 'rxjs';
 })
 export class BookComponent implements OnInit {
 
-  books: any;
+  songs: any;
   audio:any;
 
-  displayedColumns = ['isbn', 'title', 'author'];
-  dataSource = new BookDataSource(this.api);
+  displayedColumns = ['song_title', 'artist_name', 'published_year'];
+  dataSource = new SongDataSource(this.api);
 
   constructor(private api: ApiService) { }
 
@@ -26,22 +26,22 @@ export class BookComponent implements OnInit {
   // this.audio.play();
   // console.log("audio?");
     
-  this.api.getBooks()
+  this.api.getSongs()
     .subscribe(res => {
       console.log(res);
-      this.books = res;
+      this.songs = res;
     }, err => {
       console.log(err);
     });
 }
 
 }
-export class BookDataSource extends DataSource<any> {
+export class SongDataSource extends DataSource<any> {
   constructor(private api: ApiService) {
     super()
   }
   connect() {
-    return this.api.getBooks();
+    return this.api.getSongs();
   }
   disconnect() {
   }

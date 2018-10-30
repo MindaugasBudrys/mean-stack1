@@ -37,7 +37,7 @@ export class ApiService {
     return body || { };
   }
 
-  getBooks(): Observable<any> {
+  getSongs(): Observable<any> {
     console.log(apiUrl);
     return this.http.get(apiUrl, httpOptions).pipe(
       map(this.extractData),
@@ -51,7 +51,7 @@ export class ApiService {
       map(this.extractData),
       catchError(this.handleError));
   }
-  postBook(data): Observable<any> {
+  postSong(data): Observable<any> {
     console.log(apiUrl);
     console.log(data);
     console.log(httpOptions);
