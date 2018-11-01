@@ -15,9 +15,18 @@ export class MusicPlayerComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    // this.audio.src = "http://localhost:3000/api/file/download?objectID=5bd8915c0d90120948e5500f";
+    // this.audio.src = "http://10.152.194.159:8080/api/file/download?objectID=5bd84d2e79f5a00350fc9e17";
+
     //savo id
-    this.audio.src = "http://localhost:3000/api/file/download?objectID=5bd9cb14103dde1c24fb07ab";
+    //wutang1
+    // this.audio.src = "http://localhost:3000/api/file/download?objectID=5bd84d2e79f5a00350fc9e17";
+
+
+    //waves
+    this.audio.src = "http://localhost:3000/api/file/download?objectID=5bd8915c0d90120948e5500f";
+    
+    //kendrick
+    // this.audio.src = "http://localhost:3000/api/file/download?objectID=5bd9cb14103dde1c24fb07ab";
     
     this.audio.load();
     this.audio.volume = 0.2;

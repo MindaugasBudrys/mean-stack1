@@ -47,7 +47,7 @@ connection.once('open', () => {
   // Download a file from MongoDB - then save to local file-system
   // streams/downloads file by object id
   app.get('/api/file/download', (req, res) => {
-      // Check file exist on MongoDB
+  // Check file exist on MongoDB
   
   var filename = req.query.filename;
   var objectID = req.query.objectID;
@@ -58,7 +58,10 @@ connection.once('open', () => {
       return
           } 
     
+    res.header('Content-Type', 'audio/mpeg',);
+
     var readstream = gfs.createReadStream({ _id: objectID });
+    // res.set('Content-Type', 'audio/mpeg');
     readstream.pipe(res);
       });
   });
