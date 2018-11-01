@@ -15,7 +15,10 @@ export class MusicPlayerComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.audio.src = "http://localhost:3000/api/file/download?filename=wutang1.mp3";
+    // this.audio.src = "http://localhost:3000/api/file/download?objectID=5bd8915c0d90120948e5500f";
+    //savo id
+    this.audio.src = "http://localhost:3000/api/file/download?objectID=5bd9cb14103dde1c24fb07ab";
+    
     this.audio.load();
     this.audio.volume = 0.2;
     // this.songTime = 100;
@@ -49,6 +52,7 @@ export class MusicPlayerComponent implements OnInit {
   }
 
   public progressCount(duration, currTime){
+    console.log(duration);
     return (currTime  / duration) * 100;
   }
 
@@ -67,6 +71,10 @@ export class MusicPlayerComponent implements OnInit {
       //   console.log("TRIGgEEEREDEDE")
       // }
       this.songProgress = this.progressCount(this.audio.duration, this.audio.currentTime);
+      console.log('progress bar:-----------------------')
+      console.log(this.audio.duration);
+      console.log(this.audio.currentTime);
+      console.log(this.songProgress);
       });
   }
 
