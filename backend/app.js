@@ -59,6 +59,9 @@ connection.once('open', () => {
           } 
     
     res.header('Content-Type', 'audio/mpeg',);
+    // res.header('Content-Length', );
+    // console.log(file.status);
+    // console.log(file.);
 
     var readstream = gfs.createReadStream({ _id: objectID });
     // res.set('Content-Type', 'audio/mpeg');
