@@ -8,7 +8,7 @@ import { FormControl, FormGroupDirective, FormBuilder, FormGroup, NgForm, Valida
   templateUrl: './book-edit.component.html',
   styleUrls: ['./book-edit.component.css']
 })
-export class BookEditComponent implements OnInit {
+export class SongEditComponent implements OnInit {
 
   bookForm: FormGroup;
   id:string = '';

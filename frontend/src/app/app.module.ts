@@ -2,10 +2,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 
-import { BookComponent } from './book/book.component';
-import { BookDetailComponent } from './book-detail/book-detail.component';
-import { BookCreateComponent } from './book-create/book-create.component';
-import { BookEditComponent } from './book-edit/book-edit.component';
+import { SongComponent } from './book/book.component';
+import { SongDetailComponent } from './book-detail/book-detail.component';
+import { SongCreateComponent } from './book-create/book-create.component';
+import { SongEditComponent } from './book-edit/book-edit.component';
 
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -17,27 +17,27 @@ import { MaterialModules } from './material-modules';
 
 const appRoutes: Routes = [
   {
-    path: 'books',
-    component: BookComponent,
-    data: { title: 'Book List' }
+    path: 'songs',
+    component: SongComponent,
+    data: { title: 'Song List' }
   },
   {
-    path: 'book-details/:id',
-    component: BookDetailComponent,
-    data: { title: 'Book Details' }
+    path: 'song-details/:id',
+    component: SongDetailComponent,
+    data: { title: 'Song Details' }
   },
   {
-    path: 'book-create',
-    component: BookCreateComponent,
-    data: { title: 'Create Book' }
+    path: 'song-create',
+    component: SongCreateComponent,
+    data: { title: 'Create Song' }
   },
   {
-    path: 'book-edit/:id',
-    component: BookEditComponent,
-    data: { title: 'Edit Book' }
+    path: 'song-edit/:id',
+    component: SongEditComponent,
+    data: { title: 'Edit Song' }
   },
   { path: '',
-    redirectTo: '/books',
+    redirectTo: '/songs',
     pathMatch: 'full'
   }
 ];
@@ -45,10 +45,10 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    BookComponent,
-    BookDetailComponent,
-    BookCreateComponent,
-    BookEditComponent,
+    SongComponent,
+    SongDetailComponent,
+    SongCreateComponent,
+    SongEditComponent,
     MusicPlayerComponent
   ],
   imports: [

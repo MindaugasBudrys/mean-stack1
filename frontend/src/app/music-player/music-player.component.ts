@@ -18,20 +18,25 @@ export class MusicPlayerComponent implements OnInit {
 
     
 
-
+    //og 10.152.216.39
+    //mb 10.152.194.159
 
     // this.audio.src = "http://10.152.194.159:8080/api/file/download?objectID=5bd84d2e79f5a00350fc9e17";
 
     //savo id
     //wutang1
-    this.audio.src = "http://localhost:3000/api/file/download?objectID=5bd84d2e79f5a00350fc9e17";
+    // this.audio.src = "http://10.152.216.39:3000/api/file/download?objectID=5bd84d2e79f5a00350fc9e17";
+
+
+    // this.audio.src = "http://10.152.216.39:3000/api/file/download?objectID=5bd877fe9f7ae81eb08faa2c";
+        // this.audio.src = "http://10.152.216.39:3000/api/file/download?objectID=5bd877fe9f7ae81eb08faa2c";
 
 
     //waves
     // this.audio.src = "http://localhost:3000/api/file/download?objectID=5bd8915c0d90120948e5500f";
     
     //kendrick
-    // this.audio.src = "http://localhost:3000/api/file/download?objectID=5bd9cb14103dde1c24fb07ab";
+    this.audio.src = "http://localhost:3000/api/file/download?objectID=5bd9cb14103dde1c24fb07ab";
     
 
 
@@ -39,7 +44,7 @@ export class MusicPlayerComponent implements OnInit {
     this.audio.load();
     this.audio.volume = 0.2;
     // this.songTime = 100;
-    this.audio.currentTime = 20;
+    this.audio.currentTime = 15;
     this.progressBar();
   }
 
@@ -62,7 +67,7 @@ export class MusicPlayerComponent implements OnInit {
   }
 
   public test2(){
-    this.audio.currentTime = 50;
+    this.audio.currentTime = 172;
   }
 
   public pressedButton(){

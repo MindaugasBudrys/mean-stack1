@@ -4,11 +4,11 @@ import { DataSource } from '@angular/cdk/collections';
 import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'app-book',
-  templateUrl: './book.component.html',
-  styleUrls: ['./book.component.css']
+  selector: 'app-song',
+  templateUrl: './song.component.html',
+  styleUrls: ['./song.component.css']
 })
-export class BookComponent implements OnInit {
+export class SongComponent implements OnInit {
 
   songs: any;
   audio:any;

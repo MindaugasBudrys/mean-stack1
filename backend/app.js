@@ -59,11 +59,21 @@ connection.once('open', () => {
           } 
     
     res.header('Content-Type', 'audio/mpeg',);
+
+    //TO DO:
+    // 1. content-length idet del duration? gal kazka pafixins pvz chrome?
+    // 2. https://developer.mozilla.org/en-US/docs/Web/HTTP/Configuring_servers_for_Ogg_media
+
+
+
+
+
+
     // res.header('Content-Length', );
     // console.log(file.status);
     // console.log(file.);
 
-    var readstream = gfs.createReadStream({ _id: objectID });
+    var readstream = gfs.createReadStream({_id: objectID});
     // res.set('Content-Type', 'audio/mpeg');
     readstream.pipe(res);
       });
