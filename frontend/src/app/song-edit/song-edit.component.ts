@@ -4,13 +4,13 @@ import { ApiService } from '../api.service';
 import { FormControl, FormGroupDirective, FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-book-edit',
-  templateUrl: './book-edit.component.html',
-  styleUrls: ['./book-edit.component.css']
+  selector: 'app-song-edit',
+  templateUrl: './song-edit.component.html',
+  styleUrls: ['./song-edit.component.css']
 })
 export class SongEditComponent implements OnInit {
 
-  bookForm: FormGroup;
+  songForm: FormGroup;
   id:string = '';
   isbn:string = '';
   title:string = '';
@@ -22,8 +22,8 @@ export class SongEditComponent implements OnInit {
   constructor(private router: Router, private route: ActivatedRoute, private api: ApiService, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
-    this.getBook(this.route.snapshot.params['id']);
-    this.bookForm = this.formBuilder.group({
+    this.getSong(this.route.snapshot.params['id']);
+    this.songForm = this.formBuilder.group({
       'isbn' : [null, Validators.required],
       'title' : [null, Validators.required],
       'description' : [null, Validators.required],
@@ -33,10 +33,10 @@ export class SongEditComponent implements OnInit {
     });
   }
 
-  getBook(id) {
-    this.api.getBook(id).subscribe(data => {
+  getSong(id) {
+    this.api.getSong(id).subscribe(data => {
       this.id = data._id;
-      this.bookForm.setValue({
+      this.songForm.setValue({
         isbn: data.isbn,
         title: data.title,
         description: data.description,
@@ -49,18 +49,18 @@ export class SongEditComponent implements OnInit {
 
   //???
   onFormSubmit(form:NgForm) {
-    this.api.updateBook(this.id)
+    this.api.updateSong(this.id)
       .subscribe(res => {
           let id = res['_id'];
-          this.router.navigate(['/book-details', id]);
+          this.router.navigate(['/song-details', id]);
         }, (err) => {
           console.log(err);
         }
       );
   }
 
-  bookDetails() {
-    this.router.navigate(['/book-details', this.id]);
+  songDetails() {
+    this.router.navigate(['/song-details', this.id]);
   }
 
 }

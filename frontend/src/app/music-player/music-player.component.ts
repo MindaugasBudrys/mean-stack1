@@ -26,6 +26,9 @@ export class MusicPlayerComponent implements OnInit {
     //savo id
     //wutang1
     // this.audio.src = "http://10.152.216.39:3000/api/file/download?objectID=5bd84d2e79f5a00350fc9e17";
+    this.audio.src = "http://localhost:3000/api/file/download?objectID=5be876eea59bd714b8125db2";
+
+    
 
 
     // this.audio.src = "http://10.152.216.39:3000/api/file/download?objectID=5bd877fe9f7ae81eb08faa2c";
@@ -36,7 +39,7 @@ export class MusicPlayerComponent implements OnInit {
     // this.audio.src = "http://localhost:3000/api/file/download?objectID=5bd8915c0d90120948e5500f";
     
     //kendrick
-    this.audio.src = "http://localhost:3000/api/file/download?objectID=5bd9cb14103dde1c24fb07ab";
+    // this.audio.src = "http://localhost:3000/api/file/download?objectID=5bd9cb14103dde1c24fb07ab";
     
 
 

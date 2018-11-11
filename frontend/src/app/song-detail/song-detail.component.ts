@@ -18,7 +18,7 @@ export class SongDetailComponent implements OnInit {
   }
 
   getSongDetails(id) {
-    this.api.getBook(id)
+    this.api.getSong(id)
       .subscribe(data => {
         console.log(data);
         this.book = data;
@@ -26,9 +26,9 @@ export class SongDetailComponent implements OnInit {
   }
 
   deleteSong(id) {
-    this.api.deleteBook(id)
+    this.api.deleteSong(id)
       .subscribe(res => {
-          this.router.navigate(['/books']);
+          this.router.navigate(['/songs']);
         }, (err) => {
           console.log(err);
         }

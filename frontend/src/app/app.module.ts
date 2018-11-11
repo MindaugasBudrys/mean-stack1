@@ -2,10 +2,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 
-import { SongComponent } from './book/book.component';
-import { SongDetailComponent } from './book-detail/book-detail.component';
-import { SongCreateComponent } from './book-create/book-create.component';
-import { SongEditComponent } from './book-edit/book-edit.component';
+import { SongComponent } from './song/song.component';
+import { SongDetailComponent } from './song-detail/song-detail.component';
+import { SongCreateComponent } from './song-create/song-create.component';
+import { SongEditComponent } from './song-edit/song-edit.component';
 
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';

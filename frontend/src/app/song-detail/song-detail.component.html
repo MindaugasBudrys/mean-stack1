@@ -1,0 +1,27 @@
+<div class="button-row">
+  <a mat-raised-button color="primary" [routerLink]="['/songs']"><mat-icon>list</mat-icon></a>
+</div>
+<mat-card class="example-card">
+  <mat-card-header>
+    <mat-card-title><h2>{{song.title}}</h2></mat-card-title>
+    <mat-card-subtitle>{{song.description}}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <dl>
+      <dt>ISBN:</dt>
+      <dd>{{song.isbn}}</dd>
+      <dt>Author:</dt>
+      <dd>{{song.author}}</dd>
+      <dt>Publisher:</dt>
+      <dd>{{song.publisher}}</dd>
+      <dt>Publish Year:</dt>
+      <dd>{{song.published_year}}</dd>
+      <dt>Update Date:</dt>
+      <dd>{{song.updated_date | date}}</dd>
+    </dl>
+  </mat-card-content>
+  <mat-card-actions>
+    <a mat-raised-button color="primary" [routerLink]="['/song-edit', song._id]"><mat-icon>edit</mat-icon></a>
+    <a mat-raised-button color="warn" (click)="deleteSong(song._id)"><mat-icon>delete</mat-icon></a>
+  </mat-card-actions>
+</mat-card>
