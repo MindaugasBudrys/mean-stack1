@@ -1,5 +1,5 @@
 <div class="button-row">
-  <a mat-raised-button color="primary" [routerLink]="['/book-create']"><mat-icon>add</mat-icon></a>
+  <a mat-raised-button color="primary" [routerLink]="['/song-create']"><mat-icon>add</mat-icon></a>
 </div>
 <div class="example-container mat-elevation-z8">
   <table mat-table #table [dataSource]="dataSource">
@@ -23,6 +23,6 @@
 
     
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;" [routerLink]="['/book-details/', row._id]"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" [routerLink]="['/song-details/', row._id]"></tr>
   </table>
 </div>

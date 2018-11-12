@@ -47,7 +47,7 @@ connection.once('open', () => {
   // Download a file from MongoDB - then save to local file-system
   // streams/downloads file by object id
   app.get('/api/file/download', (req, res) => {
-      // Check file exist on MongoDB
+  // Check file exist on MongoDB
   
   var filename = req.query.filename;
   var objectID = req.query.objectID;
@@ -58,7 +58,23 @@ connection.once('open', () => {
       return
           } 
     
-    var readstream = gfs.createReadStream({ _id: objectID });
+    res.header('Content-Type', 'audio/mpeg',);
+
+    //TO DO:
+    // 1. content-length idet del duration? gal kazka pafixins pvz chrome?
+    // 2. https://developer.mozilla.org/en-US/docs/Web/HTTP/Configuring_servers_for_Ogg_media
+
+
+
+
+
+
+    // res.header('Content-Length', );
+    // console.log(file.status);
+    // console.log(file.);
+
+    var readstream = gfs.createReadStream({_id: objectID});
+    // res.set('Content-Type', 'audio/mpeg');
     readstream.pipe(res);
       });
   });

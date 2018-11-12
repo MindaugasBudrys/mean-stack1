@@ -43,7 +43,7 @@ export class ApiService {
       map(this.extractData),
       catchError(this.handleError));
   }
-  getBook(id: string): Observable<any> {
+  getSong(id: string): Observable<any> {
     
     const url = `${apiUrl}/${id}`;
     console.log(url);
@@ -60,7 +60,7 @@ export class ApiService {
         catchError(this.handleError)
       );
   }
-  updateBook(data): Observable<any> {
+  updateSong(data): Observable<any> {
     console.log(apiUrl);
     console.log(data);
     return this.http.put(apiUrl, data, httpOptions)
@@ -68,7 +68,7 @@ export class ApiService {
         catchError(this.handleError)
       );
   }
-  deleteBook(id: string): Observable<{}> {
+  deleteSong(id: string): Observable<{}> {
     const url = `${apiUrl}/${id}`;
     console.log(apiUrl);
     return this.http.delete(url, httpOptions)

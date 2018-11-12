@@ -4,11 +4,11 @@ import { ApiService } from '../api.service';
 import { FormControl, FormGroupDirective, FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-book-create',
-  templateUrl: './book-create.component.html',
-  styleUrls: ['./book-create.component.css']
+  selector: 'app-song-create',
+  templateUrl: './song-create.component.html',
+  styleUrls: ['./song-create.component.css']
 })
-export class BookCreateComponent implements OnInit {
+export class SongCreateComponent implements OnInit {
 
 
   songForm: FormGroup;
@@ -38,7 +38,7 @@ export class BookCreateComponent implements OnInit {
     this.api.postSong(form)
       .subscribe(res => {
           let id = res['_id'];
-          this.router.navigate(['/book-details', id]);
+          this.router.navigate(['/song-details', id]);
         }, (err) => {
           console.log(err);
         });
