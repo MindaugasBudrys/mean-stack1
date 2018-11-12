@@ -26,6 +26,7 @@ export class SongComponent implements OnInit {
   // this.audio.play();
   // console.log("audio?");
     
+  console.log("GETTING ALL SONGS (ngOnInit)")
   this.api.getSongs()
     .subscribe(res => {
       console.log(res);

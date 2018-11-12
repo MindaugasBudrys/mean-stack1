@@ -10,7 +10,12 @@ var fs = require('fs');
 var gridfs = require('gridfs-stream');
 
 
-var apiRouter = require('./routes/song');
+var songRouter = require('./routes/song');
+var artistRouter = require('./routes/artist');
+var albumRouter = require('./routes/album');
+
+
+
 
 var app = express();
  
@@ -123,7 +128,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, '../frontend/dist/mean-angular6')));
 app.use('/', express.static(path.join(__dirname, '../frontend/dist/mean-angular6')));
-app.use('/api', apiRouter);
+app.use('/api', songRouter);
+// app.use('/api/songs', songRouter);
+
+// app.use('/api/artists', artistRouter);
+// app.use('/api/albums', albumRouter);
+
 // app.use('/xd', express.static('public'));
 // app.use(express.static('public'))
 

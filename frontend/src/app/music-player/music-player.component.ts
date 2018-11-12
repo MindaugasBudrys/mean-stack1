@@ -25,8 +25,8 @@ export class MusicPlayerComponent implements OnInit {
 
     //savo id
     //wutang1
-    // this.audio.src = "http://10.152.216.39:3000/api/file/download?objectID=5bd84d2e79f5a00350fc9e17";
-    this.audio.src = "http://localhost:3000/api/file/download?objectID=5be876eea59bd714b8125db2";
+    // this.audio.src = "http://localhost:3000/api/file/download?objectID=5bd84d2e79f5a00350fc9e17";
+    // this.audio.src = "http://localhost:3000/api/file/download?objectID=5be876eea59bd714b8125db2";
 
     
 
@@ -39,7 +39,7 @@ export class MusicPlayerComponent implements OnInit {
     // this.audio.src = "http://localhost:3000/api/file/download?objectID=5bd8915c0d90120948e5500f";
     
     //kendrick
-    // this.audio.src = "http://localhost:3000/api/file/download?objectID=5bd9cb14103dde1c24fb07ab";
+    this.audio.src = "http://localhost:3000/api/file/download?objectID=5bd9cb14103dde1c24fb07ab";
     
 
 
@@ -51,17 +51,17 @@ export class MusicPlayerComponent implements OnInit {
     this.progressBar();
   }
 
-  async getDuration(){    
-    console.log('DURATION nuo ASYNC METODO')
-    console.log(this.audio.duration);
-    while(this.audio.duration === Infinity) {
-      await new Promise(r => setTimeout(r, 1000));
-      this.audio.currentTime = 10000000*Math.random();
-    }
-    let duration = this.audio.duration;
+  // async getDuration(){    
+  //   console.log('DURATION nuo ASYNC METODO')
+  //   console.log(this.audio.duration);
+  //   while(this.audio.duration === Infinity) {
+  //     await new Promise(r => setTimeout(r, 1000));
+  //     this.audio.currentTime = 10000000*Math.random();
+  //   }
+  //   let duration = this.audio.duration;
 
-    console.log(duration);
-  } 
+  //   console.log(duration);
+  // } 
 
   public test1(){
     console.log("------------------------ test 1------------")
@@ -70,7 +70,7 @@ export class MusicPlayerComponent implements OnInit {
   }
 
   public test2(){
-    this.audio.currentTime = 172;
+    this.audio.currentTime = 55;
   }
 
   public pressedButton(){
@@ -119,7 +119,7 @@ export class MusicPlayerComponent implements OnInit {
       // }
       this.songProgress = this.progressCount(this.audio.duration, this.audio.currentTime);
       console.log('progress bar:-----------------------')
-      console.log(this.audio.duration);
+      console.log(this.audio);
       console.log(this.audio.currentTime);
       console.log(this.songProgress);
       });
