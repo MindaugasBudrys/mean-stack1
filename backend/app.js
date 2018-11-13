@@ -16,7 +16,7 @@ var gridfs = require('gridfs-stream');
 var songRouter = require('./routes/song');
 var artistRouter = require('./routes/artist');
 var albumRouter = require('./routes/album');
-
+var genreRouter = require('./routes/genre');
 
 var app = express();
  
@@ -139,6 +139,7 @@ app.use('/', express.static(path.join(__dirname, '../frontend/dist/mean-angular6
 app.use('/api', songRouter);
 app.use('/api', albumRouter);
 app.use('/api', artistRouter);
+app.use('/api', genreRouter);
 // app.use('/api/songs', songRouter);
 
 // app.use('/api/artists', artistRouter);

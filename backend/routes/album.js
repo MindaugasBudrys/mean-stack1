@@ -22,6 +22,34 @@ router.post(albumPath, function(req, res, next) {
   });
 });
 
+/* GET SINGLE ALBUM BY ID */
+router.get(albumPath + ':id', function(req, res, next) {
+  Album.findById(req.params.id, function (err, post) {
+    if (err) return next(err);
+    res.json(post);
+  });
+});
+
+/* UPDATE ALBUM */
+router.put(albumPath + ':id', function(req, res, next) {
+  Album.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
+    if (err) return next(err);
+    res.json(post);
+  });
+});
+
+
+/* DELETE ALBUM */
+router.delete(albumPath + ':id', function(req, res, next) {
+  Album.findByIdAndRemove(req.params.id, req.body, function (err, post) {
+    if (err) return next(err);
+    res.json(post);
+  });
+});
+
+
+
+
 
 //albums2 populate WORKS
 // router.get('/albums/', function(req, res, next) {
