@@ -7,21 +7,29 @@ var cors = require('cors');
 
 var mongoose = require('mongoose');
 var fs = require('fs');
+
 var gridfs = require('gridfs-stream');
 
+// console.log('GRIDFS.MODEL:   -----')
+// console.log(gridfs.model);
 
 var songRouter = require('./routes/song');
-var artistRouter = require('./routes/artist');
-var albumRouter = require('./routes/album');
-
-
+// var artistRouter = require('./routes/artist');
+// var albumRouter = require('./routes/album');
 
 
 var app = express();
  
 // var conn = mongoose.createConnection('mongodb://localhost/mean-angular6');
 
-mongoose.connect('mongodb://localhost:27017/mean-angular6')
+mongoose.connect('mongodb://localhost:27017/mean-angular6');
+
+// var gridfs = require('mongoose-gridfs')({
+//   collection:'attachments',
+//   model:'Attachment',
+//   mongooseConnection: mongoose.connection
+// });
+
 mongoose.Promise = global.Promise;
 
 gridfs.mongo = mongoose.mongo;

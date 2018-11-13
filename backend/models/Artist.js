@@ -7,4 +7,4 @@ var ArtistSchema = new Schema({
   description: { type: String},
 
 });
-module.exports = mongoose.model('Artist', ArtistSchema);
+module.exports = mongoose.model('Artist', ArtistSchema, 'artists');
