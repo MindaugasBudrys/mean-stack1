@@ -20,10 +20,9 @@ var genreRouter = require('./routes/genre');
 
 var app = express();
  
-// var conn = mongoose.createConnection('mongodb://localhost/mean-angular6');
-
 mongoose.connect('mongodb://localhost:27017/mean-angular6');
 
+//not working...?
 // var gridfs = require('mongoose-gridfs')({
 //   collection:'attachments',
 //   model:'Attachment',

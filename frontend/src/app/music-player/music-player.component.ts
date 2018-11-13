@@ -25,13 +25,13 @@ export class MusicPlayerComponent implements OnInit {
 
     //savo id
     //wutang1
-    this.audio.src = "http://localhost:3000/api/file/download?objectID=5beaa69465e59d1a0864cc44";
+    this.audio.src = "http://localhost:3000/api/file/download?objectID=5beb267482409b11702639c6";
 
 
 
 
     this.audio.load();
-    this.audio.volume = 0.2;
+    this.audio.volume = 0.8;
     // this.songTime = 100;
     this.audio.currentTime = 15;
     this.progressBar();
