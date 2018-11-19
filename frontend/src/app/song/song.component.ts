@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ApiService } from '../api.service';
 import { DataSource } from '@angular/cdk/collections';
 import { Observable } from 'rxjs';
+import { PlayerService} from '../music-player/player-service';
 
 @Component({
   selector: 'app-song',
@@ -10,15 +11,35 @@ import { Observable } from 'rxjs';
 })
 export class SongComponent implements OnInit {
 
+  // @Output() songPlayOnClick = new EventEmitter();
+
+  // public inputToChild: Object;
+
+  message:string;
+
+  // constructor() { }
+
+
+
   songs: any;
   audio:any;
 
   displayedColumns = ['song_title', 'artist_name', 'published_year'];
   dataSource = new SongDataSource(this.api);
 
-  constructor(private api: ApiService) { }
+  constructor(private api: ApiService,
+              private data: PlayerService) { }
+
+
+
+              
+  newMessage() {
+   this.data.changeMessage("Hello from song component");
+  }
+
 
   ngOnInit() {
+    this.data.currentMessage.subscribe(message => this.message = message)
 
   // this.audio = new Audio();
   // this.audio.src = "../../../assets/sounds/test1.mp3";
@@ -35,6 +56,10 @@ export class SongComponent implements OnInit {
       console.log(err);
     });
 }
+
+
+
+
 
 }
 export class SongDataSource extends DataSource<any> {

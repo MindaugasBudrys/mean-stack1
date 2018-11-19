@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { PlayerService } from './player-service';
+
 
 @Component({
   selector: 'app-music-player',
@@ -8,15 +10,19 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 })
 export class MusicPlayerComponent implements OnInit {
 
+
+  
+  message:string;
+
   public audio = new Audio();
   public currentlyPlaying : boolean = false;
   public songProgress = 0;
 
-  constructor() { }
+  constructor(private data: PlayerService) { }
 
   ngOnInit() {
 
-    
+    this.data.currentMessage.subscribe(message => this.message = message)
 
     //og 10.152.216.39
     //mb 10.152.194.159
@@ -49,6 +55,12 @@ export class MusicPlayerComponent implements OnInit {
   //   console.log(duration);
   // } 
 
+
+
+
+
+
+
   public test1(){
     console.log("------------------------ test 1------------")
     console.log("current time: " + this.audio.currentTime);
@@ -57,6 +69,7 @@ export class MusicPlayerComponent implements OnInit {
 
   public test2(){
     this.audio.currentTime = 55;
+    console.log(this.message);
   }
 
   public pressedButton(){
