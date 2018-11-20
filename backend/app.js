@@ -8,7 +8,15 @@ var cors = require('cors');
 var mongoose = require('mongoose');
 var fs = require('fs');
 
+var requestLOL = require('request');
+
 var gridfs = require('gridfs-stream');
+
+
+
+
+//for file tag reading
+const NodeID3 = require('node-id3');
 
 // console.log('GRIDFS.MODEL:   -----')
 // console.log(gridfs.model);
@@ -56,11 +64,128 @@ connection.once('open', () => {
   var filename = req.query.filename;
   
       var writestream = gfs.createWriteStream({ filename: filename });
-      fs.createReadStream(__dirname + "/public/" + filename).pipe(writestream);
+      fs.createReadStream(__dirname + "/public" + filename).pipe(writestream);
       writestream.on('close', (file) => {
-          res.send('Stored File: ' + file.filename);
+          res.send('Stored File: ' + file.filename + ' , id is: ' + file._id);
       });
   });
+
+    //---------------------------
+    // SINGLE FILE UPLOAD WITH ADDITION TO DB AS SONG
+    app.get('/api/file/uploadsong', (req, res) => {
+  
+
+      // var albumID = "5bf451544a7c2026d063b0be";
+
+
+
+
+      var filename = req.query.filename;
+
+      let filepath = (__dirname + "/public/test1/" + filename);
+      let tags = NodeID3.read(filepath);
+      console.log('TAGS: -----------------------------')
+      // console.log(tags);
+
+
+      // fs.readdir(__dirname + "/public/test1", (err, files) => {
+
+        var savedFileID = '';
+
+        var writestream = gfs.createWriteStream({ filename: filename });
+        fs.createReadStream(__dirname + "/public/test1/" + filename).pipe(writestream);
+        writestream.on('close', (file) => {
+            savedFileID = file._id;
+            console.log('SAVEDFILEID: ');
+            console.log(savedFileID);
+            res.send('Stored File: ' + file.filename + ' , id is: ' + file._id);
+
+
+
+            var myJSONObject = {
+              title: tags.title,
+              album: '5bf451544a7c2026d063b0be',
+              song_file: savedFileID,
+              duration: '999'
+             };
+    
+            requestLOL({
+                url: "http://localhost:3000/api/songs",
+                method: "POST",
+                json: true,   // <--Very important!!!
+                body: myJSONObject
+            }, function (error, response, body){
+              console.log('BANDOM POST IDET, cia response: --------------------------------')
+                // console.log(response);
+            });
+
+
+
+
+
+        });
+
+
+
+
+      //   request.post(
+      //     'http://localhost:3000/api/songs',
+      //     { json: {
+      //        title: tags.title,
+      //        album: '5bf451544a7c2026d063b0be',
+      //        song_file: savedFileID,
+      //        duration: '999'
+      //       } },
+      //     function (error, response, body) {
+      //         if (!error && response.statusCode == 200) {
+      //             console.log(body)
+      //         }
+      //     }
+      // );
+
+
+        // songRouter.post("/songs/", function(req, res, next) {
+        //   Song.create(req.body, function (err, post) {
+        //     if (err) return next(err);
+        //     res.json(post);
+        //   });
+        // });
+
+
+        // songRouter.post("/songs/", function(req, res, next) {
+        //   Song.create(req.body, function (err, post) {
+        //     if (err) return next(err);
+        //     res.json(post);
+        //   });
+        // });
+
+
+
+
+      // });
+
+
+
+
+
+
+      });
+  //---------------------------
+
+
+  // //TEST FOLDER ---------------------------------------
+  // //upload folder
+  // app.get('/api/file/uploadfolder', (req, res) => {
+  
+  //   var filename = req.query.filename;
+    
+  //       var writestream = gfs.createWriteStream({});
+  //       fs.createReadStream(__dirname + "/public/" + filename).pipe(writestream);
+  //       writestream.on('close', (file) => {
+  //           res.send('Stored File: ' + file.filename);
+  //       });
+  //   });
+  //   //-------------------------------------
 
   // Download a file from MongoDB - then save to local file-system
   // streams/downloads file by object id
