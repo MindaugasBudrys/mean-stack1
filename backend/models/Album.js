@@ -7,10 +7,10 @@ var AlbumSchema = new Schema({
 
   //fix release date with proper date object
   // release_date: { type: Date},
-  release_date: { type: Number},
+  release_date: { type: String},
 
   artist: { type: Schema.ObjectId, ref: 'Artist', required: true }, //ref to artist which must already be created
-  genres: [{ type: Schema.ObjectId, ref: 'Genre' }], //array of genres
+  genres: [{ type: Schema.ObjectId, ref: 'Genre' }], //optional array of genres (which must also be already created)
   duration: { type: Number}
 });
 module.exports = mongoose.model('Album', AlbumSchema, 'albums');

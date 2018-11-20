@@ -12,5 +12,5 @@ var SongSchema = new Schema({
   song_file: {type: Schema.ObjectId, ref: 'GFS', required: true}
   // song_file: {type: Schema.Types.Object, ref: 'GFS'},
 });
-module.exports = mongoose.model("GFS", new Schema({}, {strict: false}), "fs.files" );
+module.exports = mongoose.model('GFS', new Schema({}, {strict: false}), 'fs.files' );
 module.exports = mongoose.model('Song', SongSchema, 'songs');

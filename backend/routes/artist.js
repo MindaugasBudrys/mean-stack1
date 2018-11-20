@@ -56,6 +56,7 @@ router.get(artistPath + ':id' + '/albums/', function(req, res, next) {
 
 //post artist
 router.post(artistPath, function(req, res, next) {
+  console.log(req.body);
   Artist.create(req.body, function (err, post) {
     if (err) return next(err);
     res.json(post);

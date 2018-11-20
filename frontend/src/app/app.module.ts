@@ -13,6 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MusicPlayerComponent } from './music-player/music-player.component';
 import { MaterialModules } from './material-modules';
+import { TrackComponent } from './track/track.component';
 
 
 const appRoutes: Routes = [
@@ -49,7 +50,8 @@ const appRoutes: Routes = [
     SongDetailComponent,
     SongCreateComponent,
     SongEditComponent,
-    MusicPlayerComponent
+    MusicPlayerComponent,
+    TrackComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),

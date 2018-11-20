@@ -20,7 +20,13 @@ var genreRouter = require('./routes/genre');
 
 var app = express();
  
+// var dev_db_url = 'mongodb://holysmokes:kasekas1212@ds155352.mlab.com:55352/smokifydb';
+// mongoose.connect(dev_db_url);
+
 mongoose.connect('mongodb://localhost:27017/mean-angular6');
+
+
+// mongodb://<dbuser>:<dbpassword>@ds155352.mlab.com:55352/smokifydbZzZ
 
 //not working...?
 // var gridfs = require('mongoose-gridfs')({

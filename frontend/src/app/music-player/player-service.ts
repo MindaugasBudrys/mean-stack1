@@ -10,8 +10,8 @@ export class PlayerService {
 
   constructor() { }
 
-  changeMessage(message: string) {
-    this.messageSource.next(message)
+  playSong(objectID: string) {
+    this.messageSource.next(objectID);
   }
 
 }

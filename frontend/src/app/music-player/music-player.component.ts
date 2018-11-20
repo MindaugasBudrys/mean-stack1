@@ -18,58 +18,34 @@ export class MusicPlayerComponent implements OnInit {
   public currentlyPlaying : boolean = false;
   public songProgress = 0;
 
-  constructor(private data: PlayerService) { }
+  constructor(private data: PlayerService) {
+    this.data.currentMessage.subscribe(message => this.testMethod1(message))
+   }
 
-  ngOnInit() {
+  testMethod1(id){
+    console.log('TEST METHOD1. SONG FILE ID: '+  id)
 
-    this.data.currentMessage.subscribe(message => this.message = message)
+    if(id!='default message'){
+      this.loadAndPlay(id);
+      this.currentlyPlaying = true;
+    }
 
-    //og 10.152.216.39
-    //mb 10.152.194.159
+  }
 
-    // this.audio.src = "http://10.152.194.159:8080/api/file/download?objectID=5bd84d2e79f5a00350fc9e17";
-
-    //savo id
-    //wutang1
-    this.audio.src = "http://localhost:3000/api/file/download?objectID=5beb267482409b11702639c6";
-
-
-
-
+  loadAndPlay(id){
+    this.audio.src = "http://localhost:3000/api/file/download?objectID=" + id;
     this.audio.load();
-    this.audio.volume = 0.8;
-    // this.songTime = 100;
-    this.audio.currentTime = 15;
-    this.progressBar();
+    this.audio.play();
   }
 
-  // async getDuration(){    
-  //   console.log('DURATION nuo ASYNC METODO')
-  //   console.log(this.audio.duration);
-  //   while(this.audio.duration === Infinity) {
-  //     await new Promise(r => setTimeout(r, 1000));
-  //     this.audio.currentTime = 10000000*Math.random();
-  //   }
-  //   let duration = this.audio.duration;
-
-  //   console.log(duration);
-  // } 
-
-
-
-
-
-
-
-  public test1(){
-    console.log("------------------------ test 1------------")
-    console.log("current time: " + this.audio.currentTime);
-    console.log("duration: " + this.audio.duration);
+  public pauseAudio(){
+    this.audio.pause();
+    this.currentlyPlaying = false;
   }
 
-  public test2(){
-    this.audio.currentTime = 55;
-    console.log(this.message);
+  public playAudio(){
+    this.audio.play();
+    this.currentlyPlaying = true;
   }
 
   public pressedButton(){
@@ -86,15 +62,52 @@ export class MusicPlayerComponent implements OnInit {
     }
   }
 
-  public pauseAudio(){
-    this.audio.pause();
-    this.currentlyPlaying = false;
+
+
+  ngOnInit() {
+
+    
+
+    //og 10.152.216.39
+    //mb 10.152.194.159
+
+    // this.audio.src = "http://10.152.194.159:8080/api/file/download?objectID=5bd84d2e79f5a00350fc9e17";
+
+    //savo id
+    //wutang1
+    this.audio.src = "http://localhost:3000/api/file/download?objectID=5beb267482409b11702639c6";
+
+
+
+
+    this.audio.load();
+    this.audio.volume = 0.8;
+    // this.songTime = 100;
+    // this.audio.currentTime = 15;
+    this.progressBar();
   }
 
-  public playAudio(){
+  // async getDuration(){    
+  //   console.log('DURATION nuo ASYNC METODO')
+  //   console.log(this.audio.duration);
+  //   while(this.audio.duration === Infinity) {
+  //     await new Promise(r => setTimeout(r, 1000));
+  //     this.audio.currentTime = 10000000*Math.random();
+  //   }
+  //   let duration = this.audio.duration;
 
-    this.audio.play();
-    this.currentlyPlaying = true;
+  //   console.log(duration);
+  // } 
+
+  public test1(){
+    console.log("------------------------ test 1------------")
+    console.log("current time: " + this.audio.currentTime);
+    console.log("duration: " + this.audio.duration);
+  }
+
+  public test2(){
+    this.audio.currentTime = 55;
+    console.log(this.message);
   }
 
   public progressCount(duration, currTime){

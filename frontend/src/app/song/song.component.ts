@@ -12,40 +12,27 @@ import { PlayerService} from '../music-player/player-service';
 export class SongComponent implements OnInit {
 
   // @Output() songPlayOnClick = new EventEmitter();
-
   // public inputToChild: Object;
 
   message:string;
 
-  // constructor() { }
-
-
-
   songs: any;
   audio:any;
 
-  displayedColumns = ['song_title', 'artist_name', 'published_year'];
+  displayedColumns = ['song_title', 'album_name' ,'artist_name', 'published_year'];
   dataSource = new SongDataSource(this.api);
 
   constructor(private api: ApiService,
-              private data: PlayerService) { }
-
-
-
-              
-  newMessage() {
-   this.data.changeMessage("Hello from song component");
+              private data: PlayerService) {
+    this.data.currentMessage.subscribe(message => this.message = message)
   }
 
+  newMessage($event) {
+    // console.log($event);
+    this.data.playSong($event);
+  }
 
   ngOnInit() {
-    this.data.currentMessage.subscribe(message => this.message = message)
-
-  // this.audio = new Audio();
-  // this.audio.src = "../../../assets/sounds/test1.mp3";
-  // this.audio.load();
-  // this.audio.play();
-  // console.log("audio?");
     
   console.log("GETTING ALL SONGS (ngOnInit)")
   this.api.getSongs()
@@ -67,6 +54,8 @@ export class SongDataSource extends DataSource<any> {
     super()
   }
   connect() {
+    console.log('songdatasource connect.')
+
     return this.api.getSongs();
   }
   disconnect() {
