@@ -18,6 +18,9 @@ var gridfs = require('gridfs-stream');
 //for file tag reading
 const NodeID3 = require('node-id3');
 
+//for getting mp3 file duration
+var mp3Duration = require('mp3-duration');
+
 // console.log('GRIDFS.MODEL:   -----')
 // console.log(gridfs.model);
 
@@ -72,52 +75,79 @@ connection.once('open', () => {
 
     //---------------------------
     // SINGLE FILE UPLOAD WITH ADDITION TO DB AS SONG
+
+    //db nebe single, o visa folder.
     app.get('/api/file/uploadsong', (req, res) => {
   
 
       // var albumID = "5bf451544a7c2026d063b0be";
 
+      var albumID = req.query.albumID;
+
+      
+      
+      var fileList = [];
+      fs.readdir(__dirname + "/public/test4", (err, files) => {
+
+        fileList = files;
+        console.log('FILELIST:             ------')
+        console.log('file list ilgis: ' + fileList.length)
+        console.log(fileList);
 
 
+        console.log('LOOPAS VEIKIA.')
+        for(var i = 0; i < fileList.length; i++){
+  
+          let filepath = (__dirname + "/public/test4/" + fileList[i]);
+          let tags = NodeID3.read(filepath);
+          console.log('TAGS nureadinom, title + trackNumber: -----------------------------')
+          console.log(tags.title + "   --   " + tags.trackNumber);
+  
+          // mp3Duration(filepath, function (err, duration) {
+          //   if (err) return console.log(err.message);
+          //   // console.log(fileList)
+          //   console.log(fileList[3] + ' is: ' + duration + ' seconds long');
+          // });
 
-      var filename = req.query.filename;
-
-      let filepath = (__dirname + "/public/test1/" + filename);
-      let tags = NodeID3.read(filepath);
-      console.log('TAGS: -----------------------------')
-      // console.log(tags);
-
-
-      // fs.readdir(__dirname + "/public/test1", (err, files) => {
-
-        var savedFileID = '';
-
-        var writestream = gfs.createWriteStream({ filename: filename });
-        fs.createReadStream(__dirname + "/public/test1/" + filename).pipe(writestream);
-        writestream.on('close', (file) => {
-            savedFileID = file._id;
-            console.log('SAVEDFILEID: ');
-            console.log(savedFileID);
-            res.send('Stored File: ' + file.filename + ' , id is: ' + file._id);
-
-
-
-            var myJSONObject = {
-              title: tags.title,
-              album: '5bf451544a7c2026d063b0be',
-              song_file: savedFileID,
-              duration: '999'
-             };
-    
-            requestLOL({
-                url: "http://localhost:3000/api/songs",
-                method: "POST",
-                json: true,   // <--Very important!!!
-                body: myJSONObject
-            }, function (error, response, body){
-              console.log('BANDOM POST IDET, cia response: --------------------------------')
+          var savedFileID = '';
+          var writestream = gfs.createWriteStream({ filename: fileList[i] });
+          fs.createReadStream(__dirname + "/public/test4/" + fileList[i]).pipe(writestream);
+          writestream.on('close', (file) => {
+              savedFileID = file._id;
+              console.log('SAVEDFILEID: ');
+              console.log(savedFileID);
+              // res.send('Stored File: ' + file.filename + ' , id is: ' + file._id);
+  
+  
+              var myJSONObject = {
+                title: tags.title,
+                track_number: tags.trackNumber,
+                album: albumID,
+                song_file: savedFileID
+                // duration: ''
+               };
+  
+              requestLOL({
+                  url: "http://localhost:3000/api/songs",
+                  method: "POST",
+                  json: true,   // <--Very important!!!
+                  body: myJSONObject
+              }, function (error, response, body){
+                console.log('BANDOM POST IDET, cia json: --------------------------------')
+                console.log(myJSONObject)
                 // console.log(response);
-            });
+              });
+          });
+
+
+
+          
+        }
+  
+  
+
+  
+
 
 
 
@@ -128,41 +158,16 @@ connection.once('open', () => {
 
 
 
-      //   request.post(
-      //     'http://localhost:3000/api/songs',
-      //     { json: {
-      //        title: tags.title,
-      //        album: '5bf451544a7c2026d063b0be',
-      //        song_file: savedFileID,
-      //        duration: '999'
-      //       } },
-      //     function (error, response, body) {
-      //         if (!error && response.statusCode == 200) {
-      //             console.log(body)
-      //         }
-      //     }
-      // );
-
-
-        // songRouter.post("/songs/", function(req, res, next) {
-        //   Song.create(req.body, function (err, post) {
-        //     if (err) return next(err);
-        //     res.json(post);
-        //   });
-        // });
-
-
-        // songRouter.post("/songs/", function(req, res, next) {
-        //   Song.create(req.body, function (err, post) {
-        //     if (err) return next(err);
-        //     res.json(post);
-        //   });
-        // });
 
 
 
 
-      // });
+
+
+
+
+
+
 
 
 
@@ -170,6 +175,9 @@ connection.once('open', () => {
 
 
       });
+
+
+
   //---------------------------
 
 

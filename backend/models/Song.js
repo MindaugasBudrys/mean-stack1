@@ -7,6 +7,7 @@ var SongSchema = new Schema({
   duration: {type: Number},
   album: {type: Schema.ObjectId, ref: 'Album', required: true}, //ref to album
   featuring_artists: [{ type: Schema.ObjectId, ref: 'Artist' }], //array of featuring artists
+  track_number: {type: String},
 
   //still not sure how song file id should be like, this is probably ok
   song_file: {type: Schema.ObjectId, ref: 'GFS', required: true}
