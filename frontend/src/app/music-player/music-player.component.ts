@@ -19,6 +19,11 @@ export class MusicPlayerComponent implements OnInit {
   public isMuted : boolean = false;
   public songProgress = 0;
 
+  public volume = 0;
+  public currentTime : string = "0.00";
+  public remainingTime : string = "0.00";
+
+
   constructor(private data: PlayerService) {
     this.data.currentMessage.subscribe(message => this.testMethod1(message))
    }
@@ -160,31 +165,33 @@ export class MusicPlayerComponent implements OnInit {
     catch(error){
       console.log(error);
     }
-  }
+  
 
-  public changeVolume(event: any){
-    this.audio.volume = event.value / 100;
-    this.volumeIconChange();
-  }
-
-  public volumeIconChange(){
-    if(this.audio.volume > 0){
-      this.isMuted = false;
-    } 
-    else { 
-      this.isMuted = true
-    };
-  }
-
-  public mute(){
-    if(this.isMuted){
-      this.isMuted = false;
-      this.audio.volume = this.volume / 100;
+    public changeVolume(event: any){
+      this.audio.volume = event.value / 100;
+      this.volumeIconChange();
     }
-    else {
-      this.isMuted = true;
-      this.audio.volume = 0;
+  
+    public volumeIconChange(){
+      if(this.audio.volume > 0){
+        this.isMuted = false;
+      } 
+      else { 
+        this.isMuted = true
+      };
     }
-  }
+  
+    public mute(){
+      if(this.isMuted){
+        this.isMuted = false;
+        this.audio.volume = this.volume / 100;
+      }
+      else {
+        this.isMuted = true;
+        this.audio.volume = 0;
+      }
+    }
+
+
 
 }
