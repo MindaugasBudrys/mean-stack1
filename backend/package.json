@@ -16,7 +16,11 @@
     "gridfs-stream": "^1.1.1",
     "http-errors": "^1.7.1",
     "mongoose": "^5.2.15",
+    "mongoose-gridfs": "^0.5.0",
     "morgan": "^1.9.1",
+    "mp3-duration": "^1.1.0",
+    "node-id3": "^0.1.7",
+    "request": "^2.88.0",
     "serve-favicon": "^2.5.0"
   }
 }

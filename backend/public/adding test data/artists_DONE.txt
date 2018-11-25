@@ -1,0 +1,44 @@
+//pasted into chrome console
+
+var namelist = [
+"2Pac",
+"A$AP Rocky",
+"Big Sean",
+"BONES",
+"Brotha Lynch Hung",
+"Childish Gambino",
+"Denzel Curry",
+"Drake",
+"Eminem",
+"Gang Starr",
+"J Cole",
+"Joey Bada$$",
+"Kendrick Lamar",
+"Lil Peep",
+"Logic",
+"Mac Miller",
+"Mick Jenkins",
+"OutKast",
+"Xavier Wulf"
+];
+
+for (var i = 0; i < namelist.length; i++) {
+
+
+var artistInfo = {
+	"name": namelist[i],
+	"description": "description of " + namelist[i] + " blablabla...."
+}
+
+console.log(artistInfo);
+
+fetch("http://localhost:3000/api/artists/", {
+  method: "POST",
+  headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+  
+  body: JSON.stringify(artistInfo)
+});
+}
