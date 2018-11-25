@@ -27,6 +27,16 @@
     align-items: center;
 }
 
+#progressBar{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.progressBar .current{
+    float: left;
+}
+
 #now-playing-bar-left,
 #now-playing-bar-right{
     width: 30%;
@@ -43,12 +53,13 @@
     cursor: pointer;
 }
 
-.progressTime{
+
+/* .progressTime{
     color: #a0a0a0;
     font-size: 11px;
     min-width: 40px;
     text-align: center;
-}
+} */
 
 .mat-slider {
     width: 100%;

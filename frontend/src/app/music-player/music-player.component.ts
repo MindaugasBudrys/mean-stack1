@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { Component, OnInit, SimpleChanges } from '@angular/core';
+import { catchError } from 'rxjs/operators';
 
 @Component({
   selector: 'app-music-player',
@@ -10,8 +10,11 @@ export class MusicPlayerComponent implements OnInit {
 
   public audio = new Audio();
   public currentlyPlaying : boolean = false;
+  public isMuted : boolean = false;
   public songProgress = 0;
-
+  public volume = 0;
+  public currentTime : string = "0.00";
+  public remainingTime : string = "0.00";
   constructor() { }
 
   ngOnInit() {
@@ -26,7 +29,7 @@ export class MusicPlayerComponent implements OnInit {
     //savo id
     //wutang1
     // this.audio.src = "http://10.152.216.39:3000/api/file/download?objectID=5bd84d2e79f5a00350fc9e17";
-    this.audio.src = "http://localhost:3000/api/file/download?objectID=5be876eea59bd714b8125db2";
+    this.audio.src = "http://localhost:3000/api/file/download?objectID=5be9bf6553ac8a0ba840b30b";
 
     
 
@@ -45,45 +48,29 @@ export class MusicPlayerComponent implements OnInit {
 
 
     this.audio.load();
-    this.audio.volume = 0.2;
-    // this.songTime = 100;
-    this.audio.currentTime = 15;
+    // this.volumeBar = 50;
     this.progressBar();
+    this.volume = 52;
+    this.audio.volume = 0.52;
+    // this.volumeBar();
   }
 
-  async getDuration(){    
-    console.log('DURATION nuo ASYNC METODO')
-    console.log(this.audio.duration);
-    while(this.audio.duration === Infinity) {
-      await new Promise(r => setTimeout(r, 1000));
-      this.audio.currentTime = 10000000*Math.random();
-    }
-    let duration = this.audio.duration;
+  // async getDuration(){    
+  //   while(this.audio.duration === Infinity) {
+  //     await new Promise(r => setTimeout(r, 1000));
+  //     this.audio.currentTime = 10000000*Math.random();
+  //   }
+  //   let duration = this.audio.duration;
 
-    console.log(duration);
-  } 
-
-  public test1(){
-    console.log("------------------------ test 1------------")
-    console.log("current time: " + this.audio.currentTime);
-    console.log("duration: " + this.audio.duration);
-  }
-
-  public test2(){
-    this.audio.currentTime = 172;
-  }
+  //   console.log(duration);
+  // } 
 
   public pressedButton(){
     if(this.currentlyPlaying){
       this.pauseAudio();
-      console.log("should be paused now.")
-      console.log(this.audio.currentTime);   
-      console.log(this.audio.duration);
     }
     else{
       this.playAudio();
-      console.log("should start playing now.")
-      console.log(this.audio.currentTime);
     }
   }
 
@@ -93,40 +80,76 @@ export class MusicPlayerComponent implements OnInit {
   }
 
   public playAudio(){
-
     this.audio.play();
     this.currentlyPlaying = true;
   }
 
   public progressCount(duration, currTime){
-    console.log(duration);
-    return (currTime  / duration) * 100;
+    return (currTime  / duration) * 1000;
   }
 
   public changedProgressCount(duration, progress){
-    return (progress * duration) / 100;
+    return (progress * duration) / 1000;
+  }
+
+  public convertDecimalToTime(decTime){
+    let constant = 1.666666666666667;
+    let mins = ( decTime  / 60 )
+    let secs = ( ( ( decTime ) / 60 % 1 / constant ) * 100);
+    console.log("secs " + secs);
+    console.log("mins " + mins);
+    if(secs < 10){
+      return mins.toFixed(0) + ".0" +  secs.toFixed(0);
+    } else {
+      return mins.toFixed(0) + "." +  secs.toFixed(0);
+    }
+  }
+
+  public timerUpdate(duration, currT){
+    let difference = (duration - currT);
+    this.remainingTime = this.convertDecimalToTime(difference);
+    this.currentTime = this.convertDecimalToTime(currT);
   }
 
   public changeProgress(event: any){
-    console.log(event.value);
     this.audio.currentTime = this.changedProgressCount(this.audio.duration, event.value);
   }
 
   public progressBar(){
-    this.audio.addEventListener("timeupdate", (currentTime)=>{
-      // if(this.songProgress != this.progressCount(this.audio.duration, this.audio.currentTime)){
-      //   console.log("TRIGgEEEREDEDE")
-      // }
-      this.songProgress = this.progressCount(this.audio.duration, this.audio.currentTime);
-      console.log('progress bar:-----------------------')
-      console.log(this.audio.duration);
-      console.log(this.audio.currentTime);
-      console.log(this.songProgress);
+    try{
+      this.audio.addEventListener("timeupdate", (currentTime)=>{
+        this.songProgress = this.progressCount(this.audio.duration, this.audio.currentTime);
+        this.timerUpdate(this.audio.duration, this.audio.currentTime);
       });
+    }
+    catch(error){
+      console.log(error);
+    }
   }
 
-  public onProgressSliderChange(){
+  public changeVolume(event: any){
+    this.audio.volume = event.value / 100;
+    this.volumeIconChange();
+  }
 
+  public volumeIconChange(){
+    if(this.audio.volume > 0){
+      this.isMuted = false;
+    } 
+    else { 
+      this.isMuted = true
+    };
+  }
+
+  public mute(){
+    if(this.isMuted){
+      this.isMuted = false;
+      this.audio.volume = this.volume / 100;
+    }
+    else {
+      this.isMuted = true;
+      this.audio.volume = 0;
+    }
   }
 
 }
