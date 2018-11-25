@@ -7,7 +7,7 @@ const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
 };
 // const apiUrl = "http://52.59.195.40:3000/api";
-const apiUrl = "http://localhost:3000/api";
+const apiUrl = "http://localhost:3000/api/songs";
 
 
 @Injectable({
