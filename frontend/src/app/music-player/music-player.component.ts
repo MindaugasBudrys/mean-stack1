@@ -16,6 +16,7 @@ export class MusicPlayerComponent implements OnInit {
 
   public audio = new Audio();
   public currentlyPlaying : boolean = false;
+  public isMuted : boolean = false;
   public songProgress = 0;
 
   constructor(private data: PlayerService) {
@@ -85,6 +86,9 @@ export class MusicPlayerComponent implements OnInit {
     // this.songTime = 100;
     // this.audio.currentTime = 15;
     this.progressBar();
+    this.volume = 52;
+    this.audio.volume = 0.52;
+    // this.volumeBar();
   }
 
   // async getDuration(){    
@@ -111,16 +115,33 @@ export class MusicPlayerComponent implements OnInit {
   }
 
   public progressCount(duration, currTime){
-    console.log(duration);
-    return (currTime  / duration) * 100;
+    return (currTime  / duration) * 1000;
   }
 
   public changedProgressCount(duration, progress){
-    return (progress * duration) / 100;
+    return (progress * duration) / 1000;
+  }
+
+  public convertDecimalToTime(decTime){
+    let constant = 1.666666666666667;
+    let mins = ( decTime  / 60 )
+    let secs = ( ( ( decTime ) / 60 % 1 / constant ) * 100);
+    console.log("secs " + secs);
+    console.log("mins " + mins);
+    if(secs < 10){
+      return mins.toFixed(0) + ".0" +  secs.toFixed(0);
+    } else {
+      return mins.toFixed(0) + "." +  secs.toFixed(0);
+    }
+  }
+
+  public timerUpdate(duration, currT){
+    let difference = (duration - currT);
+    this.remainingTime = this.convertDecimalToTime(difference);
+    this.currentTime = this.convertDecimalToTime(currT);
   }
 
   public changeProgress(event: any){
-    console.log(event.value);
     this.audio.currentTime = this.changedProgressCount(this.audio.duration, event.value);
   }
 
@@ -135,10 +156,35 @@ export class MusicPlayerComponent implements OnInit {
       console.log(this.audio.currentTime);
       console.log(this.songProgress);
       });
+    }
+    catch(error){
+      console.log(error);
+    }
   }
 
-  public onProgressSliderChange(){
+  public changeVolume(event: any){
+    this.audio.volume = event.value / 100;
+    this.volumeIconChange();
+  }
 
+  public volumeIconChange(){
+    if(this.audio.volume > 0){
+      this.isMuted = false;
+    } 
+    else { 
+      this.isMuted = true
+    };
+  }
+
+  public mute(){
+    if(this.isMuted){
+      this.isMuted = false;
+      this.audio.volume = this.volume / 100;
+    }
+    else {
+      this.isMuted = true;
+      this.audio.volume = 0;
+    }
   }
 
 }
