@@ -4,6 +4,7 @@ var mongoose = require('mongoose');
 var User = mongoose.model('User');
 
 passport.use(new LocalStrategy({
+    //sets username field to email since default is username
     usernameField: 'email'
   },
   function(username, password, done) {
