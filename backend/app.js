@@ -5,6 +5,11 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cors = require('cors');
 
+var passport = require('passport');
+require('./models/db');
+require('./config/passport');
+
+
 var mongoose = require('mongoose');
 var fs = require('fs');
 
@@ -18,30 +23,18 @@ const NodeID3 = require('node-id3');
 //for getting mp3 file duration
 var mp3Duration = require('mp3-duration');
 
-// console.log('GRIDFS.MODEL:   -----')
-// console.log(gridfs.model);
 
-var songRouter = require('./routes/song');
-var artistRouter = require('./routes/artist');
-var albumRouter = require('./routes/album');
-var genreRouter = require('./routes/genre');
+// var songRouter = require('./routes/song');
+// var artistRouter = require('./routes/artist');
+// var albumRouter = require('./routes/album');
+// var genreRouter = require('./routes/genre');
+
+var routesApi = require('./routes/index');
 
 var app = express();
 
-var dev_db_url = 'mongodb://holysmokes:kasekas1212@ds155352.mlab.com:55352/smokifydb';
-mongoose.connect(dev_db_url);
-
 // mongoose.connect('mongodb://localhost:27017/mean-angular6');
 
-
-// mongodb://<dbuser>:<dbpassword>@ds155352.mlab.com:55352/smokifydbZzZ
-
-//not working...?
-// var gridfs = require('mongoose-gridfs')({
-//   collection:'attachments',
-//   model:'Attachment',
-//   mongooseConnection: mongoose.connection
-// });
 
 mongoose.Promise = global.Promise;
 
@@ -241,17 +234,15 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, '../frontend/dist/mean-angular6')));
 app.use('/', express.static(path.join(__dirname, '../frontend/dist/mean-angular6')));
-app.use('/api', songRouter);
-app.use('/api', albumRouter);
-app.use('/api', artistRouter);
-app.use('/api', genreRouter);
-// app.use('/api/songs', songRouter);
 
-// app.use('/api/artists', artistRouter);
-// app.use('/api/albums', albumRouter);
 
-// app.use('/xd', express.static('public'));
-// app.use(express.static('public'))
+app.use(passport.initialize());
+app.use('/api', routesApi);
+//used before:
+// app.use('/api', songRouter);
+// app.use('/api', albumRouter);
+// app.use('/api', artistRouter);
+// app.use('/api', genreRouter);
 
 
 // catch 404 and forward to error handler
@@ -269,4 +260,15 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.send(err.status);
 });
+
+// Catch unauthorised errors
+app.use(function (err, req, res, next) {
+  if (err.name === 'UnauthorizedError') {
+    res.status(401);
+    res.json({"message" : err.name + ": " + err.message});
+  }
+});
+
+
+
 module.exports = app;
