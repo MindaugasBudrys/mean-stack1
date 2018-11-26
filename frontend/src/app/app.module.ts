@@ -15,30 +15,46 @@ import { MusicPlayerComponent } from './music-player/music-player.component';
 import { MaterialModules } from './material-modules';
 import { TrackComponent } from './track/track.component';
 
+import { AuthenticationService } from './authentication.service';
+import { AuthGuardService } from './auth-guard.service';
+
+import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './login/login.component';
+import { ProfileComponent } from './profile/profile.component';
+
+
 
 const appRoutes: Routes = [
+
+
+
+  // { path: '', component: HomeComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuardService] },
+
   {
     path: 'songs',
     component: SongComponent,
     data: { title: 'Song List' }
   },
-  {
-    path: 'song-details/:id',
-    component: SongDetailComponent,
-    data: { title: 'Song Details' }
-  },
-  {
-    path: 'song-create',
-    component: SongCreateComponent,
-    data: { title: 'Create Song' }
-  },
-  {
-    path: 'song-edit/:id',
-    component: SongEditComponent,
-    data: { title: 'Edit Song' }
-  },
+  // {
+  //   path: 'song-details/:id',
+  //   component: SongDetailComponent,
+  //   data: { title: 'Song Details' }
+  // },
+  // {
+  //   path: 'song-create',
+  //   component: SongCreateComponent,
+  //   data: { title: 'Create Song' }
+  // },
+  // {
+  //   path: 'song-edit/:id',
+  //   component: SongEditComponent,
+  //   data: { title: 'Edit Song' }
+  // },
   { path: '',
-    redirectTo: '/songs',
+    redirectTo: '/login',
     pathMatch: 'full'
   }
 ];
@@ -51,7 +67,10 @@ const appRoutes: Routes = [
     SongCreateComponent,
     SongEditComponent,
     MusicPlayerComponent,
-    TrackComponent
+    TrackComponent,
+    RegisterComponent,
+    LoginComponent,
+    ProfileComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
@@ -62,7 +81,10 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     MaterialModules
   ],
-  providers: [],
+  providers: [
+    AuthenticationService,
+    AuthGuardService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
