@@ -14,6 +14,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MusicPlayerComponent } from './music-player/music-player.component';
 import { MaterialModules } from './material-modules';
 import { TrackComponent } from './track/track.component';
+import { NavigationBarsComponent } from './navigation-bars/navigation-bars.component';
 
 
 const appRoutes: Routes = [
@@ -51,7 +52,8 @@ const appRoutes: Routes = [
     SongCreateComponent,
     SongEditComponent,
     MusicPlayerComponent,
-    TrackComponent
+    TrackComponent,
+    NavigationBarsComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),

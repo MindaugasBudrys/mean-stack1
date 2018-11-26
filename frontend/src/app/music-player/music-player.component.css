@@ -1,9 +1,11 @@
-#now-playing-bar-container{
+.now-playing-bar-container{
     min-width: 620px;
     width: 100%;
-    background: grey;
+    background: #609462;
     bottom: 0;
     position: fixed;
+    display: table-cell;   
+    vertical-align: middle;
 }
 
 #now-playing-bar{
@@ -41,16 +43,6 @@
 #now-playing-bar-right{
     width: 30%;
     min-width: 180px;
-}
-
-.controlButton{
-    background-color: transparent;
-    border: none;
-    vertical-align: middle;
-}
-
-.controlButton:hover{
-    cursor: pointer;
 }
 
 

@@ -1,97 +1,88 @@
-<div id="now-playing-bar-container">
+<div class="container-fluid">
+  <div class="row now-playing-bar-container">
 
-  <div id="now-playing-bar">
+    <div id="now-playing-bar">
 
-    <div id="now-playing-bar-left">
+      <div class="col-lg-3 col-md-3 hidden-xs" id="now-playing-bar-left">
 
-      <div class="content">
-        <span class="albumLink">
-          <img src="https://i.ytimg.com/vi/rb8Y38eilRM/maxresdefault.jpg" class="albumArtWork">
-          <label>Artist</label><br>
-          <label>Song name</label>
-        </span>
-      </div>
-
-    </div>
-
-    <div id="now-playing-bar-center">
-
-      <div class="content playerControls">
-
-        <div class="button">
-
-          <button class="controlButton shuffle mat-icon-button" title="Shuffle button" alt="Shuffle">
-              <i class="material-icons md-24">
-                shuffle
-              </i>
-          </button>
-
-          <button class="controlButton skip-previous mat-icon-button" title="Skip previous button" alt="Previous">
-              <i class="material-icons md-36">
-                skip_previous
-              </i>
-          </button>
-
-          <button class="controlButton play mat-icon-button" (click)="pressedButton()" title="Play button" alt="Play">
-            <div *ngIf="!currentlyPlaying">
-              <i class="material-icons md-48">
-                play_circle_outline
-              </i>
-            </div>
-
-            <div *ngIf="currentlyPlaying">
-              <i class="material-icons md-48">
-                pause_circle_outline
-              </i>
-            </div>
-          </button>
-
-          <button class="controlButton skip-next mat-icon-button" title="Skip next button" alt="Next">
-              <i class="material-icons md-36">
-                skip_next
-              </i>
-          </button>
-
-
-          <button class="controlButton repeat mat-icon-button" title="Repeat button" alt="Repeat">
-              <i class="material-icons md-24">
-                repeat
-              </i>
-          </button>
-
+        <div class="content">
+          <span class="albumLink">
+            <img src="https://i.ytimg.com/vi/rb8Y38eilRM/maxresdefault.jpg" class="albumArtWork">
+            <label>Artist</label><br>
+            <label>Song name</label>
+          </span>
         </div>
 
       </div>
-      
-      <div id="progressBar">
-          <label class="progressTime current">{{ currentTime }}</label>
-          <mat-slider width="100%" min="0" max="1000" value="{{ songProgress }}" (input)="changeProgress($event)"></mat-slider>
-          <div class="progressTime remaining">{{ remainingTime }}</div>
+
+      <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12" id="now-playing-bar-center">
+        <div class="row content playerControls">
+          <div class="button">
+            <button class="controlButton shuffle mat-icon-button" title="Shuffle button" alt="Shuffle">
+                <i class="material-icons md-light md-24">
+                  shuffle
+                </i>
+            </button>
+
+            <button class="controlButton skip-previous mat-icon-button" title="Skip previous button" alt="Previous">
+                <i class="material-icons md-light md-36">
+                  skip_previous
+                </i>
+            </button>
+
+            <button class="controlButton play mat-icon-button" (click)="pressedButton()" title="Play button" alt="Play">
+              <div *ngIf="!currentlyPlaying">
+                <i class="material-icons md-light md-48">
+                  play_circle_outline
+                </i>
+              </div>
+
+              <div *ngIf="currentlyPlaying">
+                <i class="material-icons md-light md-48">
+                  pause_circle_outline
+                </i>
+              </div>
+            </button>
+
+            <button class="controlButton skip-next mat-icon-button" title="Skip next button" alt="Next">
+                <i class="material-icons md-light md-36">
+                  skip_next
+                </i>
+            </button>
+
+            <button class="controlButton repeat mat-icon-button" title="Repeat button" alt="Repeat">
+                <i class="material-icons md-light md-24">
+                  repeat
+                </i>
+            </button>
+          </div>
+
+        </div>
+        <div id="progressBar">
+            <label class="progressTime current">{{ currentTime }}</label>
+            <mat-slider width="100%" min="0" max="1000" value="{{ songProgress }}" (input)="changeProgress($event)"></mat-slider>
+            <div class="progressTime remaining">{{ remainingTime }}</div>
+        </div>
+
+      </div>
+
+      <div class="col-lg-3 col-md-3 col-sm-4 hidden-xs" id="now-playing-bar-right">
+          <button class="controlButton volume mat-icon-button" (click)="mute()" title="Volume" alt="Volume">
+            <i class="material-icons md-light md-24">
+              <div *ngIf="!isMuted">
+                    volume_up
+              </div>
+              <div *ngIf="isMuted">
+                    volume_off
+              </div>
+            </i>
+          </button>
+        <mat-slider
+        min="1"
+        max="100"
+        width="100%" min="0" max="100" value="{{ volume }}" (input)="changeVolume($event)"></mat-slider>
       </div>
 
     </div>
-
-    <div id="now-playing-bar-right">
-
-        <button class="controlButton volume mat-icon-button" (click)="mute()" title="Volume" alt="Volume">
-          <i class="material-icons md-24">
-            <div *ngIf="!isMuted">
-                  volume_up
-            </div>
-            <div *ngIf="isMuted">
-                  volume_off
-            </div>
-          </i>
-        </button>
-      <mat-slider
-      thumbLabel
-      [displayWith]="formatLabel"
-      tickInterval="1"
-      min="1"
-      max="100"
-       width="100%" min="0" max="100" value="{{ volume }}" (input)="changeVolume($event)"></mat-slider>
-    </div>
-
   </div>
-
 </div>
