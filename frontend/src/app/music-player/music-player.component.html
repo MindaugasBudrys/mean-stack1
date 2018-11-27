@@ -7,15 +7,15 @@
 
         <div class="content">
           <span class="albumLink">
-            <img src="https://i.ytimg.com/vi/rb8Y38eilRM/maxresdefault.jpg" class="albumArtWork">
-            <label>Artist</label><br>
-            <label>Song name</label>
+            <img src="https://upload.wikimedia.org/wikipedia/en/2/26/ManonTheMoonTheEndofDay.jpg" class="albumArtWork">
+            <label class="albumLabel">Artist</label><br>
+            <label class="albumLabel">Song name</label>
           </span>
         </div>
 
       </div>
 
-      <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12" id="now-playing-bar-center">
+      <div class="col-lg-5 col-md-5 col-sm-4 col-xs-offset-2 col-xs-4 col-sm-offset-0" id="now-playing-bar-center">
         <div class="row content playerControls">
           <div class="button">
             <button class="controlButton shuffle mat-icon-button" title="Shuffle button" alt="Shuffle">
@@ -66,7 +66,7 @@
 
       </div>
 
-      <div class="col-lg-3 col-md-3 col-sm-4 hidden-xs" id="now-playing-bar-right">
+      <div class="col-lg-3 col-md-3 hidden-xs pull-right" id="now-playing-bar-right">
           <button class="controlButton volume mat-icon-button" (click)="mute()" title="Volume" alt="Volume">
             <i class="material-icons md-light md-24">
               <div *ngIf="!isMuted">

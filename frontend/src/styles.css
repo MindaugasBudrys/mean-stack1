@@ -1,9 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
-body { margin: 0; font-family: 'Roboto', sans-serif; }
-
-
+body { margin: 0; margin-top: 40px; font-family: 'Consolas', sans-serif; overflow-y:hidden; }
 
 /* GOOGLE MATERIAL.IO ICONS */
 /* Rules for sizing the icon. */
@@ -19,6 +17,7 @@ body { margin: 0; font-family: 'Roboto', sans-serif; }
 /* Rules for using icons as white on a dark background. */
 .material-icons.md-light { color: #FFFFFF }
 .material-icons.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }
+/* .material-icons.md-light:hover { color: #b0c7b0 }; */
 
 .controlButton{
     background-color: transparent;
@@ -28,6 +27,7 @@ body { margin: 0; font-family: 'Roboto', sans-serif; }
 
 .controlButton:hover{
     cursor: pointer;
+    color: #b0c7b0;
 }
 
 /* .mat-slider.mat-slider-horizontal .mat-slider-wrapper {
@@ -54,4 +54,12 @@ body { margin: 0; font-family: 'Roboto', sans-serif; }
   }
   .mat-slider-min-value:not(.mat-slider-thumb-label-showing) .mat-slider-thumb {
     background-color: white;
+  }
+
+  ul {
+    list-style-type: none;
+  }
+
+  .marginOffSideBar {
+    margin-left: 150px;
   }
