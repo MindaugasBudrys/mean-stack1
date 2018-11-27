@@ -1,9 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
-body { margin: 0; font-family: 'Roboto', sans-serif; }
-
-
+body { margin: 0; margin-top: 40px; font-family: 'Consolas', sans-serif; overflow-y:hidden; }
 
 /* GOOGLE MATERIAL.IO ICONS */
 /* Rules for sizing the icon. */
@@ -17,5 +15,51 @@ body { margin: 0; font-family: 'Roboto', sans-serif; }
 .material-icons.md-dark.md-inactive { color: rgba(0, 0, 0, 0.26); }
 
 /* Rules for using icons as white on a dark background. */
-.material-icons.md-light { color: rgba(255, 255, 255, 1); }
+.material-icons.md-light { color: #FFFFFF }
 .material-icons.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }
+/* .material-icons.md-light:hover { color: #b0c7b0 }; */
+
+.controlButton{
+    background-color: transparent;
+    border: none;
+    vertical-align: middle;
+}
+
+.controlButton:hover{
+    cursor: pointer;
+    color: #b0c7b0;
+}
+
+/* .mat-slider.mat-slider-horizontal .mat-slider-wrapper {
+    top: 18px;
+  } */
+  .mat-slider.mat-slider-horizontal .mat-slider-track-wrapper {
+    height: 8px;
+    border-radius: 10px
+  }
+  .mat-slider.mat-slider-horizontal .mat-slider-track-background,
+  .mat-slider.mat-slider-horizontal .mat-slider-track-fill {
+    height: 100%;
+  }
+  .mat-slider.mat-slider-horizontal .mat-slider-track-fill {
+    background-color: #71babe;
+  }
+  .mat-accent .mat-slider-thumb {
+    height: 20px;
+    width: 20px;
+    background-color: #FFFFFF;
+    border: solid 3px #aaaaaa;
+    bottom: -13px;
+    right: -13px;
+  }
+  .mat-slider-min-value:not(.mat-slider-thumb-label-showing) .mat-slider-thumb {
+    background-color: white;
+  }
+
+  ul {
+    list-style-type: none;
+  }
+
+  .marginOffSideBar {
+    margin-left: 150px;
+  }

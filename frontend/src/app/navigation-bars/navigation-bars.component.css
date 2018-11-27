@@ -1,0 +1,40 @@
+.top-block{
+    background-color: #609462;
+}
+.left-block{
+    width: 150px;
+    background-color: #49614a;
+    align-content: center;
+    color: #FFFFFF;
+    padding-bottom: 1000px;
+    position: absolute;
+}
+/* .searchBox{
+    background-color: #FFFFFF;
+} */
+.searchBox {
+    border-radius: 10px;
+    background: #b0c7b0;
+    padding: inherit;
+    width: 100%;
+    margin-top: 7px;
+}
+input{
+    border-radius: 10px;
+}
+
+.flex-fill {
+    flex:1 1 auto;
+}
+
+.logo{
+    max-height: 50px;
+    max-width: 50px;
+    margin-left: 15px;
+    float: left;
+}
+
+.left-menu-group-btns{
+    margin-top: 30px;
+    margin-left: -50px;
+}
