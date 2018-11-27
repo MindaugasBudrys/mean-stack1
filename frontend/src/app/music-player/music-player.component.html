@@ -8,8 +8,8 @@
         <div class="content">
           <span class="albumLink">
             <img src="https://upload.wikimedia.org/wikipedia/en/2/26/ManonTheMoonTheEndofDay.jpg" class="albumArtWork">
-            <label class="albumLabel">Artist</label><br>
-            <label class="albumLabel">Song name</label>
+            <label class="albumLabel">{{currentTrack?.album.artist.name}}</label><br>
+            <label class="albumLabel">{{currentTrack?.title}}</label>
           </span>
         </div>
 
@@ -59,9 +59,9 @@
 
         </div>
         <div id="progressBar">
-            <label class="text-white progressTime current">{{ currentTime }}</label>
-            <mat-slider width="100%" min="0" max="1000" value="{{ songProgress }}" (input)="changeProgress($event)"></mat-slider>
-            <label class="text-white progressTime remaining">{{ remainingTime }}</label>
+          <label class="text-white progressTime current">{{ currentTime }}</label>
+          <mat-slider width="100%" min="0" max="1000" value="{{ songProgress }}" (input)="changeProgress($event)"></mat-slider>
+          <label class="text-white progressTime remaining">{{ fullTime }}</label>
         </div>
 
       </div>
