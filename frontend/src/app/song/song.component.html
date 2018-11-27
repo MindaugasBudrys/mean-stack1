@@ -46,13 +46,3 @@
 </div>
 
 <!-- <app-track></app-track> -->
-<ol>   
-  <li *ngFor="let element of songs; let i = index">
-    <app-track 
-      [trackToDisplay]="element"
-      (onClickPlay)="newMessage($event)">
-    </app-track>
-  </li>
-</ol>
-
-<app-music-player></app-music-player>

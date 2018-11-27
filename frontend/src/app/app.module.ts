@@ -55,10 +55,15 @@ const appRoutes: Routes = [
   //   component: SongEditComponent,
   //   data: { title: 'Edit Song' }
   // },
+  { path: 'home',
+  redirectTo: '/songs',
+  pathMatch: 'full'
+  },
   { path: '',
     redirectTo: '/login',
     pathMatch: 'full'
   }
+  
 ];
 
 @NgModule({

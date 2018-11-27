@@ -2,14 +2,8 @@
 <router-outlet></router-outlet>
 <app-music-player></app-music-player>
 --> 
-
-<ul class="nav navbar-nav navbar-right">
-    <li *ngIf="!auth.isLoggedIn()"><a routerLink="/login">Sign in</a></li>
-    <li *ngIf="!auth.isLoggedIn()"><a routerLink="/register">Sign up</a></li>
-    <li *ngIf="auth.isLoggedIn()"><a routerLink="/profile">{{ auth.getUserDetails()?.name }}</a></li>
-    <li *ngIf="auth.isLoggedIn()"><button (click)="auth.logout()">Logout</button></li>
-</ul>
-
-<router-outlet></router-outlet>
-
-
+<app-navigation-bars></app-navigation-bars>
+<div class="marginOffSideBar">
+  <router-outlet></router-outlet>
+</div>
+<app-music-player></app-music-player>
