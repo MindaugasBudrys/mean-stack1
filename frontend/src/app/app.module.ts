@@ -14,6 +14,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MusicPlayerComponent } from './music-player/music-player.component';
 import { MaterialModules } from './material-modules';
 import { TrackComponent } from './track/track.component';
+import { NavigationBarsComponent } from './navigation-bars/navigation-bars.component';
 
 import { AuthenticationService } from './authentication.service';
 import { AuthGuardService } from './auth-guard.service';
@@ -71,7 +72,8 @@ const appRoutes: Routes = [
     TrackComponent,
     RegisterComponent,
     LoginComponent,
-    ProfileComponent
+    ProfileComponent,
+    NavigationBarsComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),

@@ -35,6 +35,14 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="newMessage(row.song_file)"></tr>
   </table>
+  <ol>   
+      <li *ngFor="let element of songs; let i = index">
+        <app-track 
+          [trackToDisplay]="element"
+          (onClickPlay)="newMessage($event)">
+        </app-track>
+      </li>
+    </ol>
 </div>
 
 <!-- <app-track></app-track> -->
