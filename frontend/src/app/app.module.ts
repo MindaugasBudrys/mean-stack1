@@ -22,6 +22,7 @@ import { AuthGuardService } from './auth-guard.service';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
+import { HomeComponent } from './home/home.component';
 
 
 
@@ -29,7 +30,7 @@ const appRoutes: Routes = [
 
 
 
-  // { path: '', component: HomeComponent },
+  { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuardService] },
@@ -55,14 +56,15 @@ const appRoutes: Routes = [
   //   component: SongEditComponent,
   //   data: { title: 'Edit Song' }
   // },
+  //????
   { path: 'home',
-  redirectTo: '/songs',
+  redirectTo: '',
   pathMatch: 'full'
-  },
-  { path: '',
-    redirectTo: '/login',
-    pathMatch: 'full'
   }
+  // { path: '',
+  //   redirectTo: '/login',
+  //   pathMatch: 'full'
+  // }
   
 ];
 
@@ -78,7 +80,8 @@ const appRoutes: Routes = [
     RegisterComponent,
     LoginComponent,
     ProfileComponent,
-    NavigationBarsComponent
+    NavigationBarsComponent,
+    HomeComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
