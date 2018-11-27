@@ -1,17 +1,21 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
+import { Track } from '../track/track'
+
 @Injectable({
   providedIn: 'root'
 })
 export class PlayerService {
 
-  private messageSource = new BehaviorSubject("default message");
+  // <Track> or smth else? was string.
+
+  private messageSource = new BehaviorSubject<Track>(new Track());
   currentMessage = this.messageSource.asObservable();
 
   constructor() { }
 
-  playSong(objectID: string) {
-    this.messageSource.next(objectID);
+  sendTrackEvent(track: Track) {
+    this.messageSource.next(track);
   }
 
 }
