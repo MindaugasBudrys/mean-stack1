@@ -57,14 +57,9 @@ export class MusicPlayerComponent implements OnInit {
   public pressedButton(){
     if(this.currentlyPlaying){
       this.pauseAudio();
-      console.log("should be paused now.")
-      console.log(this.audio.currentTime);   
-      console.log(this.audio.duration);
     }
     else{
       this.playAudio();
-      console.log("should start playing now.")
-      console.log(this.audio.currentTime);
     }
   }
 
@@ -96,29 +91,6 @@ export class MusicPlayerComponent implements OnInit {
     // this.volumeBar();
   }
 
-  // async getDuration(){    
-  //   console.log('DURATION nuo ASYNC METODO')
-  //   console.log(this.audio.duration);
-  //   while(this.audio.duration === Infinity) {
-  //     await new Promise(r => setTimeout(r, 1000));
-  //     this.audio.currentTime = 10000000*Math.random();
-  //   }
-  //   let duration = this.audio.duration;
-
-  //   console.log(duration);
-  // } 
-
-  public test1(){
-    console.log("------------------------ test 1------------")
-    console.log("current time: " + this.audio.currentTime);
-    console.log("duration: " + this.audio.duration);
-  }
-
-  public test2(){
-    this.audio.currentTime = 55;
-    console.log(this.message);
-  }
-
   public progressCount(duration, currTime){
     return (currTime  / duration) * 1000;
   }
@@ -134,16 +106,24 @@ export class MusicPlayerComponent implements OnInit {
     console.log("secs " + secs);
     console.log("mins " + mins);
     if(secs < 10){
-      return mins.toFixed(0) + ".0" +  secs.toFixed(0);
+      console.log( this.getFlooredFixed(mins, 0) + ":0" +  this.getFlooredFixed(secs, 0));
+      return this.getFlooredFixed(mins, 0) + ":0" +  this.getFlooredFixed(secs, 0);
     } else {
-      return mins.toFixed(0) + "." +  secs.toFixed(0);
+      console.log( this.getFlooredFixed(mins, 0) + ":" +  this.getFlooredFixed(secs, 0));
+      return this.getFlooredFixed(mins, 0) + ":" +  this.getFlooredFixed(secs, 0);
     }
+  }
+
+  public getFlooredFixed(v, d) {
+    return (Math.floor(v * Math.pow(10, d)) / Math.pow(10, d)).toFixed(d);
   }
 
   public timerUpdate(duration, currT){
     let difference = (duration - currT);
     this.remainingTime = this.convertDecimalToTime(difference);
     this.currentTime = this.convertDecimalToTime(currT);
+    console.log("remaining time "+this.remainingTime);
+    console.log("current time "+this.currentTime);
   }
 
   public changeProgress(event: any){
@@ -156,10 +136,12 @@ export class MusicPlayerComponent implements OnInit {
       //   console.log("TRIGgEEEREDEDE")
       // }
       this.songProgress = this.progressCount(this.audio.duration, this.audio.currentTime);
-      console.log('progress bar:-----------------------')
-      console.log(this.audio);
-      console.log(this.audio.currentTime);
-      console.log(this.songProgress);
+      this.timerUpdate(this.audio.duration, this.audio.currentTime);
+      // console.log('progress bar:-----------------------')
+      // console.log("this.audio "+this.audio);
+      // console.log("this.audio.currentTime "+this.audio.currentTime);
+      // console.log("this.songProgress "+this.songProgress);
+      // console.log("this.audio.duration"+this.audio.duration);
       });
     }
     catch(error){
