@@ -1,3 +1,4 @@
+import {Artist} from './artist';
 
 export class Album {
   _id: string = '';
@@ -5,4 +6,5 @@ export class Album {
   title: string = '';
   release_date: string= '';
   duration: Number = 0;
+  artist : Artist = new Artist();
 }
