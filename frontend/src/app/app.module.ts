@@ -36,6 +36,7 @@ const appRoutes: Routes = [
   {
     path: 'songs',
     component: SongComponent,
+    canActivate: [AuthGuardService],
     data: { title: 'Song List' }
   },
   // {
