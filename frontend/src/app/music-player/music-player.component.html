@@ -59,9 +59,9 @@
 
         </div>
         <div id="progressBar">
-            <label class="progressTime current">{{ currentTime }}</label>
+            <label class="text-white progressTime current">{{ currentTime }}</label>
             <mat-slider width="100%" min="0" max="1000" value="{{ songProgress }}" (input)="changeProgress($event)"></mat-slider>
-            <div class="progressTime remaining">{{ remainingTime }}</div>
+            <label class="text-white progressTime remaining">{{ remainingTime }}</label>
         </div>
 
       </div>
