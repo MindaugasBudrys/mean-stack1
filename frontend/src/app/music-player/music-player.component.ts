@@ -21,7 +21,7 @@ export class MusicPlayerComponent implements OnInit {
 
   public volume = 0;
   public currentTime : string = "0.00";
-  public remainingTime : string = "0.00";
+  public fullTime : string = "0.00";
 
   currentTrack: Track;
 
@@ -40,13 +40,13 @@ export class MusicPlayerComponent implements OnInit {
       this.loadAndPlay(trackInfo.song_file);
       this.currentlyPlaying = true;
     }
-
   }
 
   loadAndPlay(id){
     this.audio.src = "http://localhost:3000/api/file/download?objectID=" + id;
     this.audio.load();
-    this.audio.play();
+    this.playAudio();
+    console.log(this.audio.duration);
   }
 
   public pauseAudio(){
@@ -68,8 +68,6 @@ export class MusicPlayerComponent implements OnInit {
     }
   }
 
-
-
   ngOnInit() {
 
     this.currentTrack = new Track();
@@ -80,21 +78,12 @@ export class MusicPlayerComponent implements OnInit {
 
     // this.audio.src = "http://10.152.194.159:8080/api/file/download?objectID=5bd84d2e79f5a00350fc9e17";
 
-    //savo id
-    //wutang1
     this.audio.src = "http://localhost:3000/api/file/download?objectID=5beb267482409b11702639c6";
-
-
-
-
     this.audio.load();
     this.audio.volume = 0.8;
-    // this.songTime = 100;
-    // this.audio.currentTime = 15;
     this.progressBar();
     this.volume = 52;
     this.audio.volume = 0.52;
-    // this.volumeBar();
   }
 
   public progressCount(duration, currTime){
@@ -109,21 +98,9 @@ export class MusicPlayerComponent implements OnInit {
     let constant = 1.666666666666667;
     let mins = ( decTime  / 60 )
     let secs = ( ( ( decTime ) / 60 % 1 / constant ) * 100);
-    console.log("secs " + secs);
-    console.log("mins " + mins);
     if(secs < 10){
-      console.log('@@@@@@@@@@ secs < 10 -----')
-      console.log('FULL DURATION OF SONG IS: ' + this.audio.duration);
-      console.log('CURRENT TIME OF SONG IS: ' + this.audio.currentTime);
-
-
-      console.log( this.getFlooredFixed(mins, 0) + ":0" +  this.getFlooredFixed(secs, 0));
       return this.getFlooredFixed(mins, 0) + ":0" +  this.getFlooredFixed(secs, 0);
     } else {
-      console.log('@@@@@@@@@@ ELSE ---------- (secs < 10 -----)')
-      console.log('FULL DURATION OF SONG IS: ' + this.audio.duration);
-      console.log('CURRENT TIME OF SONG IS: ' + this.audio.currentTime);
-      console.log( this.getFlooredFixed(mins, 0) + ":" +  this.getFlooredFixed(secs, 0));
       return this.getFlooredFixed(mins, 0) + ":" +  this.getFlooredFixed(secs, 0);
     }
   }
@@ -133,11 +110,8 @@ export class MusicPlayerComponent implements OnInit {
   }
 
   public timerUpdate(duration, currT){
-    let difference = (duration - currT);
-    this.remainingTime = this.convertDecimalToTime(difference);
+    this.fullTime = this.convertDecimalToTime(duration);
     this.currentTime = this.convertDecimalToTime(currT);
-    console.log("remaining time "+this.remainingTime);
-    console.log("current time "+this.currentTime);
   }
 
   public changeProgress(event: any){
@@ -146,16 +120,8 @@ export class MusicPlayerComponent implements OnInit {
 
   public progressBar(){
     this.audio.addEventListener("timeupdate", (currentTime)=>{
-      // if(this.songProgress != this.progressCount(this.audio.duration, this.audio.currentTime)){
-      //   console.log("TRIGgEEEREDEDE")
-      // }
       this.songProgress = this.progressCount(this.audio.duration, this.audio.currentTime);
       this.timerUpdate(this.audio.duration, this.audio.currentTime);
-      // console.log('progress bar:-----------------------')
-      // console.log("this.audio "+this.audio);
-      // console.log("this.audio.currentTime "+this.audio.currentTime);
-      // console.log("this.songProgress "+this.songProgress);
-      // console.log("this.audio.duration"+this.audio.duration);
       });
     }
     catch(error){
