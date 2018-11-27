@@ -33,7 +33,7 @@
 
     
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="newMessage(row.song_file)"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="newMessage(row)"></tr>
   </table>
   <ol>   
       <li *ngFor="let element of songs; let i = index">

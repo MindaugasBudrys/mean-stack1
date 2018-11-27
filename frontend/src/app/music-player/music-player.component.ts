@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { PlayerService } from './player-service';
-
+import { Track } from '../track/track'
 
 @Component({
   selector: 'app-music-player',
@@ -23,16 +23,21 @@ export class MusicPlayerComponent implements OnInit {
   public currentTime : string = "0.00";
   public remainingTime : string = "0.00";
 
+  currentTrack: Track;
+
 
   constructor(private data: PlayerService) {
     this.data.currentMessage.subscribe(message => this.testMethod1(message))
    }
 
-  testMethod1(id){
-    console.log('TEST METHOD1. SONG FILE ID: '+  id)
+  testMethod1(trackInfo){
+    console.log('TEST METHOD1. SONG FILE ID: ')
+    console.log(trackInfo)
 
-    if(id!='default message'){
-      this.loadAndPlay(id);
+
+    if(trackInfo!='default message'){
+      this.currentTrack = trackInfo;
+      this.loadAndPlay(trackInfo.song_file);
       this.currentlyPlaying = true;
     }
 
@@ -67,7 +72,8 @@ export class MusicPlayerComponent implements OnInit {
 
   ngOnInit() {
 
-    
+    this.currentTrack = new Track();
+    console.log('THIS TRACK NEW...')
 
     //og 10.152.216.39
     //mb 10.152.194.159
@@ -106,9 +112,17 @@ export class MusicPlayerComponent implements OnInit {
     console.log("secs " + secs);
     console.log("mins " + mins);
     if(secs < 10){
+      console.log('@@@@@@@@@@ secs < 10 -----')
+      console.log('FULL DURATION OF SONG IS: ' + this.audio.duration);
+      console.log('CURRENT TIME OF SONG IS: ' + this.audio.currentTime);
+
+
       console.log( this.getFlooredFixed(mins, 0) + ":0" +  this.getFlooredFixed(secs, 0));
       return this.getFlooredFixed(mins, 0) + ":0" +  this.getFlooredFixed(secs, 0);
     } else {
+      console.log('@@@@@@@@@@ ELSE ---------- (secs < 10 -----)')
+      console.log('FULL DURATION OF SONG IS: ' + this.audio.duration);
+      console.log('CURRENT TIME OF SONG IS: ' + this.audio.currentTime);
       console.log( this.getFlooredFixed(mins, 0) + ":" +  this.getFlooredFixed(secs, 0));
       return this.getFlooredFixed(mins, 0) + ":" +  this.getFlooredFixed(secs, 0);
     }

@@ -8,6 +8,6 @@ export class Track {
     duration : Number = 0;
     song_file : string= '';
     
-    artist : Artist = new Artist();
+    // artist : Artist = new Artist();
     album : Album = new Album();
 }

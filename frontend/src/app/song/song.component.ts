@@ -3,6 +3,7 @@ import { ApiService } from '../api.service';
 import { DataSource } from '@angular/cdk/collections';
 import { Observable } from 'rxjs';
 import { PlayerService} from '../music-player/player-service';
+import { Track } from '../track/track';
 
 @Component({
   selector: 'app-song',
@@ -14,7 +15,7 @@ export class SongComponent implements OnInit {
   // @Output() songPlayOnClick = new EventEmitter();
   // public inputToChild: Object;
 
-  message:string;
+  trackInfo: Track;
 
   songs: any;
   audio:any;
@@ -24,12 +25,13 @@ export class SongComponent implements OnInit {
 
   constructor(private api: ApiService,
               private data: PlayerService) {
-    this.data.currentMessage.subscribe(message => this.message = message)
+    this.data.currentMessage.subscribe(message => this.trackInfo = message)
   }
 
   newMessage($event) {
-    // console.log($event);
-    this.data.playSong($event);
+    console.log('new message: @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@');
+    console.log($event);
+    this.data.sendTrackEvent($event);
   }
 
   ngOnInit() {
