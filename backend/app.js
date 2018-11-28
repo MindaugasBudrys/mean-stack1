@@ -57,7 +57,7 @@ connection.once('open', () => {
     var filename = req.query.filename;
 
     var writestream = gfs.createWriteStream({ filename: filename });
-    fs.createReadStream(__dirname + "/public" + filename).pipe(writestream);
+    fs.createReadStream(__dirname + "/public/" + filename).pipe(writestream);
     writestream.on('close', (file) => {
       res.send('Stored File: ' + file.filename + ' , id is: ' + file._id);
     });
@@ -175,10 +175,33 @@ connection.once('open', () => {
       // 1. content-length idet del duration? gal kazka pafixins pvz chrome?
       // 2. https://developer.mozilla.org/en-US/docs/Web/HTTP/Configuring_servers_for_Ogg_media
 
+      // res.header('Content-Length', );
+      // console.log(file.status);
+      // console.log(file.);
 
+      var readstream = gfs.createReadStream({ _id: objectID });
+      // res.set('Content-Type', 'audio/mpeg');
+      readstream.pipe(res);
+    });
+  });
 
+  app.get('/api/file/download/picture', (req, res) => {
+    // Check file exist on MongoDB
 
+    var filename = req.query.filename;
+    var objectID = req.query.objectID;
 
+    gfs.exist({ _id: objectID }, (err, file) => {
+      if (err || !file) {
+        res.status(404).send('File Not Found');
+        return
+      }
+
+      res.header('Content-Type', 'image/jpeg');
+
+      //TO DO:
+      // 1. content-length idet del duration? gal kazka pafixins pvz chrome?
+      // 2. https://developer.mozilla.org/en-US/docs/Web/HTTP/Configuring_servers_for_Ogg_media
 
       // res.header('Content-Length', );
       // console.log(file.status);

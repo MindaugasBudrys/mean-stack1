@@ -3,4 +3,5 @@ export class Artist {
   
   name: string = '';
   description: string= '';
+  artist_picture: string = '' //artist picture id in gridfs
 }

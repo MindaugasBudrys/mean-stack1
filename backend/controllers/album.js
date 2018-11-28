@@ -18,3 +18,12 @@ module.exports.postAlbum = function(req, res) {
     });
 
 };
+
+module.exports.editAlbum = function(req, res) {
+
+  Album.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
+    if (err) return next(err);
+    res.json(post);
+  });
+
+};

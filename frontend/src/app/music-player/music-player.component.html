@@ -7,7 +7,7 @@
 
         <div class="content">
           <span class="albumLink">
-            <img src="https://upload.wikimedia.org/wikipedia/en/2/26/ManonTheMoonTheEndofDay.jpg" class="albumArtWork">
+            <img [src]="musicPlayerImage" class="albumArtWork">
             <label class="albumLabel">{{currentTrack?.album.artist.name}}</label><br>
             <label class="albumLabel">{{currentTrack?.title}}</label>
           </span>
