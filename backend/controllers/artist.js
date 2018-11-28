@@ -18,3 +18,13 @@ module.exports.postArtist = function(req, res) {
     });
 
 };
+
+module.exports.editArtist = function(req, res) {
+
+  Artist.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
+    if (err) return next(err);
+    res.json(post);
+  });
+
+};
+

@@ -24,48 +24,25 @@ import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { HomeComponent } from './home/home.component';
 
-
-
 const appRoutes: Routes = [
-
-
 
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuardService] },
-
-  {
-    path: 'songs',
+  { path: 'songs',
     component: SongComponent,
     canActivate: [AuthGuardService],
     data: { title: 'Song List' }
   },
-  // {
-  //   path: 'song-details/:id',
-  //   component: SongDetailComponent,
-  //   data: { title: 'Song Details' }
-  // },
-  // {
-  //   path: 'song-create',
-  //   component: SongCreateComponent,
-  //   data: { title: 'Create Song' }
-  // },
-  // {
-  //   path: 'song-edit/:id',
-  //   component: SongEditComponent,
-  //   data: { title: 'Edit Song' }
-  // },
-  //????
   { path: 'home',
-  redirectTo: '',
+  redirectTo: 'songs',
   pathMatch: 'full'
   }
   // { path: '',
   //   redirectTo: '/login',
   //   pathMatch: 'full'
   // }
-  
 ];
 
 @NgModule({

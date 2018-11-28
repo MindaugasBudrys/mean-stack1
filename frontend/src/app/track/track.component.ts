@@ -11,9 +11,8 @@ export class TrackComponent implements OnInit {
 
   @Input() trackToDisplay: Track;
 
-  @Output() onClickPlay = new EventEmitter<string>();
+  @Output() onClickPlay = new EventEmitter<Track>();
   // @Input() artistToFind: string = '';
-
 
 
   constructor() { }
@@ -24,7 +23,7 @@ export class TrackComponent implements OnInit {
 
   clickedPlay(){
     // console.log(this.trackToDisplay._id);
-    this.onClickPlay.emit(this.trackToDisplay.song_file);
+    this.onClickPlay.emit(this.trackToDisplay);
   }
 
 }
