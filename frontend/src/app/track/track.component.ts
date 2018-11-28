@@ -12,8 +12,6 @@ export class TrackComponent implements OnInit {
   @Input() trackToDisplay: Track;
 
   @Output() onClickPlay = new EventEmitter<Track>();
-  // @Input() artistToFind: string = '';
-
 
   constructor() { }
 
