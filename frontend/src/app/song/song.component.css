@@ -1,14 +1,18 @@
-.example-container {
-  display: flex;
-  flex-direction: column;
-  max-height: 500px;
-  min-width: 300px;
-  overflow: auto;
+.bg{
+  background-color: #b0c6af;
 }
-.isbn-col {
-  flex: 0 0 100px !important;
-  white-space: unset !important;
-}
+
 .button-row {
   margin: 10px 0;
+}
+
+.artistArtWork{
+  height: 150px;
+  width: 150px;
+}
+
+.albumLabel{
+  margin-left: 10px;
+  margin-top: 10px;
+  color: #FFFFFF;
 }
