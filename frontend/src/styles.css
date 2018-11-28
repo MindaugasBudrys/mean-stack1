@@ -3,6 +3,14 @@
 html, body { height: 100%; }
 body { margin: 0; margin-top: 40px; font-family: 'Consolas', sans-serif; overflow-y:hidden; }
 
+.scrollable-table{
+  /* display: flex;
+  flex-direction: column; */
+  max-height: 440px;
+  min-width: 100%;
+  overflow: auto;
+}
+
 /* GOOGLE MATERIAL.IO ICONS */
 /* Rules for sizing the icon. */
 .material-icons.md-18 { font-size: 18px; }

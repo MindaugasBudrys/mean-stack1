@@ -20,8 +20,8 @@ export class SongComponent implements OnInit {
   songs: any;
   audio:any;
 
-  displayedColumns = ['song_title', 'album_name', 'track_number', 'artist_name', 'published_year'];
-  dataSource = new SongDataSource(this.api);
+  // displayedColumns = ['song_title', 'album_name', 'track_number', 'artist_name', 'published_year'];
+  // dataSource = new SongDataSource(this.api);
 
   constructor(private api: ApiService,
               private data: PlayerService) {

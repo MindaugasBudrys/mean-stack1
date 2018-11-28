@@ -1,10 +1,8 @@
 <!-- <div class="button-row">
   <a mat-raised-button color="primary" [routerLink]="['/song-create']"><mat-icon>add</mat-icon></a>
 </div> -->
-<div class="example-container mat-elevation-z8">
-  <table mat-table #table [dataSource]="dataSource">
-    <!--- Note that these columns can be defined in any order.
-          The actual rendered columns are set as a property on the row definition" -->
+<!-- <div class="example-container"> -->
+  <!-- <table mat-table #table [dataSource]="dataSource">
 
     <ng-container matColumnDef="song_title">
       <th mat-header-cell *matHeaderCellDef> Title </th>
@@ -34,15 +32,53 @@
     
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="newMessage(row)"></tr>
-  </table>
-  <ol>   
+  </table> -->
+
+
+
+  <!-- <ol>   
       <li *ngFor="let element of songs; let i = index">
         <app-track 
           [trackToDisplay]="element"
           (onClickPlay)="newMessage($event)">
         </app-track>
       </li>
-    </ol>
-</div>
+    </ol> -->
+  <div class="bg">
+    <span>
+        <img src="https://upload.wikimedia.org/wikipedia/en/2/26/ManonTheMoonTheEndofDay.jpg" class="artistArtWork">
+        <label class="albumLabel">artist</label>
+        <label class="albumLabel">description</label>
+    </span>
+  </div>
+
+    <div class="container-fluid scrollable-table bg">
+        <table class="row table table-bordered table-stripped table-hover">
+          <thead>
+            <tr>
+              <th class="col-lg-1 col-md-1 col-sm-1 col-xs-1">#</th>
+              <th class="col-lg-8 col-md-8 col-sm-8 col-xs-8">TITLE</th>
+              <th class="col-lg-2 col-md-2 col-sm-2 col-xs-2">RELEASE DATE</th>
+              <th class="col-lg-1 col-md-1 col-sm-1 col-xs-1">+</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let element of songs; let i = index">
+              <td>{{ element.track_number }}</td>
+              <td><app-track 
+                [trackToDisplay]="element"
+                (onClickPlay)="newMessage($event)">
+              </app-track>{{ element.title }}</td>
+              <td>{{ element.album.release_date }}</td>
+              <td><button class="mat-icon-button controlButton">
+                <i class="material-icons md-dark md-24">
+                  playlist_add
+                </i>
+              </button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+<!-- </div> -->
 
 <!-- <app-track></app-track> -->
