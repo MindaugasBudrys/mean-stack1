@@ -46,9 +46,9 @@
     </ol> -->
   <div class="bg">
     <span>
-        <img src="https://upload.wikimedia.org/wikipedia/en/2/26/ManonTheMoonTheEndofDay.jpg" class="artistArtWork">
-        <label class="albumLabel">artist</label>
-        <label class="albumLabel">description</label>
+        <img [src]=artistImage class="artistArtWork">
+        <label class="albumLabel">{{trackInfo?.album.artist.name}}</label><br>
+        <label class="albumLabel">{{trackInfo?.album.artist.description}}</label>
     </span>
   </div>
 

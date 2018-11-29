@@ -18,6 +18,7 @@ export class MusicPlayerComponent implements OnInit {
   //we can set this to a default image before starting to play something
   musicPlayerImage:string = '';
 
+
   public audio = new Audio();
   public currentlyPlaying : boolean = false;
   public isMuted : boolean = false;
@@ -45,6 +46,7 @@ export class MusicPlayerComponent implements OnInit {
  
       // getting album cover by id
       this.musicPlayerImage = "http://localhost:3000/api/file/download/picture?objectID=" + trackInfo.album.album_cover;
+      // this.artistImage = 'http://localhost:3000/api/file/download/picture?objectID=' + trackInfo.album.artist.artist_picture;
       console.log('API LINK: ');
       console.log(this.musicPlayerImage);
       

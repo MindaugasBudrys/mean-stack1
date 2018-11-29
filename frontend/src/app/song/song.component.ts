@@ -20,6 +20,9 @@ export class SongComponent implements OnInit {
   songs: any;
   audio:any;
 
+  artistImage:string = '';
+
+
   // displayedColumns = ['song_title', 'album_name', 'track_number', 'artist_name', 'published_year'];
   // dataSource = new SongDataSource(this.api);
 
@@ -29,9 +32,16 @@ export class SongComponent implements OnInit {
   }
 
   newMessage($event) {
+
     console.log('new message: @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@');
     console.log($event);
+    this.artistImage = 'http://localhost:3000/api/file/download/picture?objectID=' + $event.album.artist.artist_picture;
+    // this.musicPlayerImage = "http://localhost:3000/api/file/download/picture?objectID=" + trackInfo.album.album_cover;
+
     this.data.sendTrackEvent($event);
+    console.log('THIS TRACK INFO: ')
+    console.log(this.trackInfo)
+
   }
 
   ngOnInit() {
