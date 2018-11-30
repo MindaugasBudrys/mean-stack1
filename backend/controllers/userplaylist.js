@@ -10,6 +10,24 @@ module.exports.getAllPlaylists = function(req, res) {
 
 };
 
+
+module.exports.getPlaylistById = function(req, res) {
+
+  UserPlaylist.findById(req.params.id, function (err, post) {
+    if (err) return next(err);
+    res.json(post);
+  });
+
+
+  // UserPlaylist
+  // .findById(req.payload._id)
+  // .exec(function(err, user) {
+  //   res.status(200).json(user);
+  // });
+
+};
+
+
 module.exports.postPlaylist = function(req, res) {
 
     UserPlaylist.create(req.body, function (err, post) {
@@ -23,21 +41,29 @@ module.exports.postPlaylist = function(req, res) {
 //????
 module.exports.addOneItemToPlaylist = function(req, res) {
 
-  UserPlaylist.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
-    if (err) return next(err);
-    res.json(post);
-  });
+  UserPlaylist.findByIdAndUpdate(
+    { _id: req.params.id },
+    { $push: { song_list: req.body.song  }},
+    function (err, post) {
+      if (err) return next(err);
+      res.json(post);
+    });
+
+    
 
 };
 
 
 //????
-module.exports.editPlaylist = function(req, res) {
+module.exports.deleteOneItemFromPlaylist = function(req, res) {
 
-  UserPlaylist.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
-    if (err) return next(err);
-    res.json(post);
-  });
-
+  UserPlaylist.findOneAndUpdate(
+    { _id: req.params.id },
+    { $pull: { 'song_list' : req.body.song }},
+    function (err, post) {
+      if (err) return next(err);
+      res.json(post);
+    });
 };
+
 

@@ -44,8 +44,10 @@ router.post('/songs', ctrlSong.postSong);
 
 //playlist
 router.get('/playlist', ctrlPlaylist.getAllPlaylists);
+router.get('/playlist/' + ':id', ctrlPlaylist.getPlaylistById);
 router.post('/playlist', ctrlPlaylist.postPlaylist);
-
+router.put('/playlist/push/:id', ctrlPlaylist.addOneItemToPlaylist);
+router.put('/playlist/pull/:id', ctrlPlaylist.deleteOneItemFromPlaylist);
 
 
 
