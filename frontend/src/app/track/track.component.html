@@ -1,7 +1,37 @@
 <!-- b0c6af -->
-<button class="mat-icon-button controlButton" (click)="clickedPlay()">
+<!-- <button class="mat-icon-button controlButton" (click)="clickedPlay()">
     <i class="material-icons md-dark md-24">
         play_circle_outline
     </i>
-</button>
+</button> -->
 
+<div class="container-fluid scrollable-table bg">
+    <table class="row table table-bordered table-stripped table-hover">
+      <thead>
+        <tr>
+          <th class="col-lg-1 col-md-1 col-sm-1 col-xs-1">#</th>
+          <th class="col-lg-8 col-md-8 col-sm-8 col-xs-8">TITLE</th>
+          <th class="col-lg-2 col-md-2 col-sm-2 col-xs-2">RELEASE DATE</th>
+          <th class="col-lg-1 col-md-1 col-sm-1 col-xs-1">+</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let element of songs; let i = index">
+          <td>{{ element.track_number }}</td>
+          <td><button class="mat-icon-button controlButton" (click)="clickedPlay()">
+            <i class="material-icons md-dark md-24">
+                play_circle_outline
+            </i>
+        </button>{{ element.title }}</td>
+          <td>{{ element.album.release_date }}</td>
+          <td>
+            <button class="mat-icon-button controlButton">
+            <i class="material-icons md-dark md-24">
+              playlist_add
+            </i>
+          </button>
+        </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
