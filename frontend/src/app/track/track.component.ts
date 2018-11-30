@@ -14,7 +14,7 @@ export class TrackComponent implements OnInit {
 
   // @Input() trackToDisplay: Track;
 
-  // @Output() onClickPlay = new EventEmitter<Track>();
+  @Output() onClickPlay = new EventEmitter<Track>();
 
   trackInfo: Track;
 
@@ -51,9 +51,9 @@ export class TrackComponent implements OnInit {
       });
   }
 
-  clickedPlay(){
-    // console.log(this.trackToDisplay._id);
-    // this.onClickPlay.emit(this.trackToDisplay);
+  clickedPlay(track: Track){
+    // console.log(track);
+    this.onClickPlay.emit(track);
   }
 
 }

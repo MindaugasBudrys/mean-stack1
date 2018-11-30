@@ -18,7 +18,7 @@
       <tbody>
         <tr *ngFor="let element of songs; let i = index">
           <td>{{ element.track_number }}</td>
-          <td><button class="mat-icon-button controlButton" (click)="clickedPlay()">
+          <td><button class="mat-icon-button controlButton" (click)="clickedPlay(element)">
             <i class="material-icons md-dark md-24">
                 play_circle_outline
             </i>

@@ -51,7 +51,9 @@
         <label class="albumLabel">{{trackInfo?.album.artist.description}}</label>
     </span>
   </div>
-  <app-track></app-track>
+  <app-track
+    (onClickPlay)="newMessage($event)">
+  </app-track>
   <!-- <div class="container-fluid scrollable-table bg">
     <table class="row table table-bordered table-stripped table-hover">
       <thead>
