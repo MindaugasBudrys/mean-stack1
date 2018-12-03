@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../authentication.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navigation-bars',
@@ -8,7 +9,10 @@ import { AuthenticationService } from '../authentication.service';
 })
 export class NavigationBarsComponent implements OnInit {
 
-  constructor(public auth: AuthenticationService) { }
+  constructor(
+    public auth: AuthenticationService,
+    private router: Router
+    ) { }
 
   ngOnInit() {
   }

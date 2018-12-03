@@ -7,7 +7,8 @@ const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
 };
 // const apiUrl = "http://52.59.195.40:3000/api";
-const apiUrl = "http://localhost:3000/api/songs";
+const apiUrl = "http://localhost:3000/api";
+
 
 
 @Injectable({
@@ -38,42 +39,57 @@ export class ApiService {
   }
 
   getSongs(): Observable<any> {
-    console.log(apiUrl);
-    return this.http.get(apiUrl, httpOptions).pipe(
+    console.log(apiUrl + "/songs");
+    return this.http.get(apiUrl + "/songs", httpOptions).pipe(
       map(this.extractData),
       catchError(this.handleError));
   }
   getSong(id: string): Observable<any> {
-    
-    const url = `${apiUrl}/${id}`;
+    const url = `${apiUrl + "/songs"}/${id}`;
     console.log(url);
     return this.http.get(url, httpOptions).pipe(
       map(this.extractData),
       catchError(this.handleError));
   }
-  postSong(data): Observable<any> {
-    console.log(apiUrl);
+
+  createPlaylist(data): Observable<any>{
+    return this.http.post(apiUrl + "/playlist", data, httpOptions)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
+  getPlaylistsByUser(data): Observable<any>{
     console.log(data);
-    console.log(httpOptions);
-    return this.http.post(apiUrl, data, httpOptions)
+    return this.http.get(apiUrl + "/playlist/user/" + data, httpOptions)
       .pipe(
         catchError(this.handleError)
       );
   }
-  updateSong(data): Observable<any> {
-    console.log(apiUrl);
-    console.log(data);
-    return this.http.put(apiUrl, data, httpOptions)
-      .pipe(
-        catchError(this.handleError)
-      );
-  }
-  deleteSong(id: string): Observable<{}> {
-    const url = `${apiUrl}/${id}`;
-    console.log(apiUrl);
-    return this.http.delete(url, httpOptions)
-      .pipe(
-        catchError(this.handleError)
-      );
-  }
+
+  // postSong(data): Observable<any> {
+  //   console.log(apiUrl);
+  //   console.log(data);
+  //   console.log(httpOptions);
+  //   return this.http.post(apiUrl, data, httpOptions)
+  //     .pipe(
+  //       catchError(this.handleError)
+  //     );
+  // }
+  // updateSong(data): Observable<any> {
+  //   console.log(apiUrl);
+  //   console.log(data);
+  //   return this.http.put(apiUrl, data, httpOptions)
+  //     .pipe(
+  //       catchError(this.handleError)
+  //     );
+  // }
+  // deleteSong(id: string): Observable<{}> {
+  //   const url = `${apiUrl}/${id}`;
+  //   console.log(apiUrl);
+  //   return this.http.delete(url, httpOptions)
+  //     .pipe(
+  //       catchError(this.handleError)
+  //     );
+  // }
 }
