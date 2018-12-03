@@ -73,6 +73,9 @@ module.exports.addOneItemToPlaylist = function(req, res) {
 };
 
 
+
+
+
 //????
 module.exports.deleteOneItemFromPlaylist = function(req, res) {
 
@@ -86,3 +89,10 @@ module.exports.deleteOneItemFromPlaylist = function(req, res) {
 };
 
 
+module.exports.deletePlaylist = function(req, res) {
+
+  UserPlaylist.findByIdAndRemove(req.params.id, function (err, post) {
+    if (err) return next(err);
+    res.json(post);
+  });
+};
