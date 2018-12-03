@@ -16,7 +16,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let element of songs; let i = index">
+        <tr *ngFor="let element of tracksToDisplay; let i = index">
           <td class="hidden-xs">{{ element.track_number }}</td>
           <td class="col-xs-12"><button class="mat-icon-button controlButton" (click)="clickedPlay(element)">
             <i class="material-icons md-dark md-24">

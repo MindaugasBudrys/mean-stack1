@@ -54,13 +54,13 @@ export class TrackComponent implements OnInit {
     console.log("GETTING ALL SONGS (ngOnInit)")
 
     this.userDetails = this.auth.getUserDetails();
-    this.api.getSongs()
-      .subscribe(res => {
-        console.log(res);
-        this.songs = res;
-      }, err => {
-        console.log(err);
-      });
+    // this.api.getSongs()
+    //   .subscribe(res => {
+    //     console.log(res);
+    //     this.songs = res;
+    //   }, err => {
+    //     console.log(err);
+    //   });
   }
 
   clickedPlay(track: Track){
