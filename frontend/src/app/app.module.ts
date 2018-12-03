@@ -23,6 +23,7 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { HomeComponent } from './home/home.component';
+// import { PlaylistsComponent } from './playlists/playlists.component';
 
 const appRoutes: Routes = [
 
@@ -58,7 +59,8 @@ const appRoutes: Routes = [
     LoginComponent,
     ProfileComponent,
     NavigationBarsComponent,
-    HomeComponent
+    HomeComponent,
+    //PlaylistsComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),

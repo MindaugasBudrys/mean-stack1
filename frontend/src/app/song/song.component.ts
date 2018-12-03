@@ -35,13 +35,12 @@ export class SongComponent implements OnInit {
 
     console.log('new message: @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@');
     console.log($event);
-    this.artistImage = 'http://localhost:3000/api/file/download/picture?objectID=' + $event.album.artist.artist_picture;
+    // this.artistImage = 'http://localhost:3000/api/file/download/picture?objectID=' + $event.album.artist.artist_picture;
     // this.musicPlayerImage = "http://localhost:3000/api/file/download/picture?objectID=" + trackInfo.album.album_cover;
 
     this.data.sendTrackEvent($event);
     console.log('THIS TRACK INFO: ')
     console.log(this.trackInfo)
-
   }
 
   ngOnInit() {
@@ -55,10 +54,6 @@ export class SongComponent implements OnInit {
       console.log(err);
     });
 }
-
-
-
-
 
 }
 export class SongDataSource extends DataSource<any> {
