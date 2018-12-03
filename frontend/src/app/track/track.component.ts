@@ -14,7 +14,7 @@ declare var $: any;
 })
 export class TrackComponent implements OnInit {
 
-  // @Input() trackToDisplay: Track;
+  @Input() tracksToDisplay: Track[];
 
   @Output() onClickPlay = new EventEmitter<Track>();
 

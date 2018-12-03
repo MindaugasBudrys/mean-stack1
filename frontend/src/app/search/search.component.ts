@@ -16,50 +16,48 @@ export class SearchComponent implements OnInit {
 
 
   ngOnInit(){
+    this.getAllSearchData();
+  }
+
+  getAllSearchData(){
+
     this.route.params.subscribe( params => {
 
+      let parameters = params;
 
+      this.api.searchSongs(parameters)
+        .subscribe(res => {
+          console.log(res);
+        }, err => {
+          console.log(err);
+        });
 
+        this.api.searchAlbums(parameters)
+        .subscribe(res => {
+          console.log(res);
+        }, err => {
+          console.log(err);
+        });
 
+        this.api.searchPlaylists(parameters)
+        .subscribe(res => {
+          console.log(res);
+        }, err => {
+          console.log(err);
+        });
 
-      this.api.searchSongs(params['searchfield'])
-      .subscribe(res => {
-        console.log(res);
-      }, err => {
-        console.log(err);
-      });
+        this.api.searchArtists(parameters)
+        .subscribe(res => {
+          console.log(res);
+        }, err => {
+          console.log(err);
+        });
 
-      this.api.searchAlbums(params['searchfield'])
-      .subscribe(res => {
-        console.log(res);
-      }, err => {
-        console.log(err);
-      });
-
-      this.api.searchPlaylists(params['searchfield'])
-      .subscribe(res => {
-        console.log(res);
-      }, err => {
-        console.log(err);
-      });
-
-      this.api.searchArtists(params['searchfield'])
-      .subscribe(res => {
-        console.log(res);
-      }, err => {
-        console.log(err);
-      });
-    
-
-
-
-      
     });
+
+  }
+
+
+
 }
-
-
-}
-
-
-// 
 
