@@ -3,9 +3,6 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 
 import { SongComponent } from './song/song.component';
-import { SongDetailComponent } from './song-detail/song-detail.component';
-import { SongCreateComponent } from './song-create/song-create.component';
-import { SongEditComponent } from './song-edit/song-edit.component';
 
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -51,9 +48,6 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     SongComponent,
-    SongDetailComponent,
-    SongCreateComponent,
-    SongEditComponent,
     MusicPlayerComponent,
     TrackComponent,
     RegisterComponent,
