@@ -1,0 +1,58 @@
+<button class="mat-icon-button controlButton" (click)="openModal()">
+  <i class="material-icons md-dark md-24">
+    play_circle_outline
+  </i>
+</button>
+<div class="container-fluid scrollable-table bg">
+    <table class="row table table-bordered table-stripped table-hover">
+      <thead>
+        <tr>
+          <th class="col-lg-1 col-md-1 col-sm-1 col-xs-1">#</th>
+          <th class="col-lg-8 col-md-8 col-sm-8 col-xs-8">TITLE</th>
+          <th class="col-lg-2 col-md-2 col-sm-2 col-xs-2">RELEASE DATE</th>
+          <th class="col-lg-1 col-md-1 col-sm-1 col-xs-1">+</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let element of playlists; let i = index">
+          <td>{{ element[i] }}</td>
+          <td>{{ element.title }}</td>
+          <td>{{ element }}</td>
+          <td>
+          <button class="mat-icon-button controlButton">
+            <i class="material-icons md-dark md-24">
+              playlist_add
+            </i>
+          </button>
+        </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4>Create a new playlist</h4>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="title">Playlist title</label><br>
+            <input type="text" class="form-control" name="title" placeholder="Enter a playlist title" [(ngModel)]="playlistReq.title">
+            <label for="description">Playlist description</label><br>
+            <input type="text" class="form-control" name="description" placeholder="Enter a playlist description" [(ngModel)]="playlistReq.description">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="mat-icon-button controlButton" (click)="createPlaylist()">
+            <i class="material-icons md-dark md-24">
+              play_circle_outline
+            </i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
