@@ -16,7 +16,7 @@ module.exports.getAllSongs = function(req, res) {
 
 module.exports.searchForSongs = function(req, res) {
 
-  Song.find({"title": { "$regex": req.query.title, "$options": "i" }}, function (err, post) {
+  Song.find({"title": { "$regex": req.params.id, "$options": "i" }}, function (err, post) {
     if (err) {console.log(err)}
     res.json(post);
   });

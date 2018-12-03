@@ -55,10 +55,10 @@ router.delete('/playlist/:id', ctrlPlaylist.deletePlaylist);
 
 
 //search (mby would be better to have a search controller)
-router.get('/search/songs', ctrlSong.searchForSongs);
-router.get('/search/artists', ctrlArtist.searchArtists);
-router.get('/search/albums', ctrlAlbum.searchAlbums);
-router.get('/search/playlists', ctrlPlaylist.searchPlaylists);
+router.get('/search/songs/:id', ctrlSong.searchForSongs);
+router.get('/search/artists/:id', ctrlArtist.searchArtists);
+router.get('/search/albums/:id', ctrlAlbum.searchAlbums);
+router.get('/search/playlists/:id', ctrlPlaylist.searchPlaylists);
 
 
 module.exports = router;

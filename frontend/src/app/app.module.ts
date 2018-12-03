@@ -21,6 +21,7 @@ import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { HomeComponent } from './home/home.component';
 import { PlaylistsComponent } from './playlists/playlists.component';
+import { SearchComponent } from './search/search.component';
 
 const appRoutes: Routes = [
 
@@ -33,6 +34,10 @@ const appRoutes: Routes = [
     component: SongComponent,
     canActivate: [AuthGuardService],
     data: { title: 'Song List' }
+  },
+  { path: 'search/:searchfield',
+    component: SearchComponent,
+    canActivate: [AuthGuardService]
   },
   { path: 'home',
   redirectTo: 'songs',
@@ -55,7 +60,8 @@ const appRoutes: Routes = [
     ProfileComponent,
     NavigationBarsComponent,
     HomeComponent,
-    PlaylistsComponent
+    PlaylistsComponent,
+    SearchComponent,
   ],
   imports: [
     RouterModule.forRoot(appRoutes),

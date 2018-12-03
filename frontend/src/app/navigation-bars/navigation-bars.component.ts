@@ -12,14 +12,17 @@ export class NavigationBarsComponent implements OnInit {
 
   searchBox:string;
 
-  constructor(public auth: AuthenticationService) { }
+  constructor(public auth: AuthenticationService, public router: Router) { 
+  }
 
   ngOnInit() {
     this.searchBox = '';
+
   }
 
   test1(){
     console.log(this.searchBox)
+    this.router.navigate(['search/' + this.searchBox])
   }
 
 }
