@@ -44,6 +44,7 @@ export class ApiService {
       map(this.extractData),
       catchError(this.handleError));
   }
+  
   getSong(id: string): Observable<any> {
     const url = `${apiUrl + "/songs"}/${id}`;
     console.log(url);
@@ -65,6 +66,13 @@ export class ApiService {
       .pipe(
         catchError(this.handleError)
       );
+  }
+
+  deletePlaylist(data): Observable<any>{
+    return this.http.delete(apiUrl + "/playlist/" + data, httpOptions)
+    .pipe(
+      catchError(this.handleError)
+    );
   }
 
   // postSong(data): Observable<any> {
