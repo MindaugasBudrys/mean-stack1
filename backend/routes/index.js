@@ -39,7 +39,8 @@ router.put('/album/' + ':id', ctrlAlbum.editAlbum);
 
 //song 
 router.get('/songs', ctrlSong.getAllSongs);
-router.get('/songs', ctrlSong.getSongById);
+router.get('/songs/:id', ctrlSong.getSongById);
+router.get('/song-search', ctrlSong.searchForSongs);
 router.post('/songs', ctrlSong.postSong);
 
 //playlist
@@ -48,7 +49,6 @@ router.get('/playlist/' + ':id', ctrlPlaylist.getPlaylistById);
 router.post('/playlist', ctrlPlaylist.postPlaylist);
 router.put('/playlist/push/:id', ctrlPlaylist.addOneItemToPlaylist);
 router.put('/playlist/pull/:id', ctrlPlaylist.deleteOneItemFromPlaylist);
-
 
 
 module.exports = router;

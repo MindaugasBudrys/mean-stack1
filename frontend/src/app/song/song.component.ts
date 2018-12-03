@@ -22,6 +22,8 @@ export class SongComponent implements OnInit {
 
   artistImage:string = '';
 
+  
+
 
   // displayedColumns = ['song_title', 'album_name', 'track_number', 'artist_name', 'published_year'];
   // dataSource = new SongDataSource(this.api);
@@ -32,6 +34,7 @@ export class SongComponent implements OnInit {
   }
 
   newMessage($event) {
+
 
     console.log('new message: @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@');
     console.log($event);

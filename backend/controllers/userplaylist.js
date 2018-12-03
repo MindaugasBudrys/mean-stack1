@@ -43,7 +43,7 @@ module.exports.addOneItemToPlaylist = function(req, res) {
 
   UserPlaylist.findByIdAndUpdate(
     { _id: req.params.id },
-    { $push: { song_list: req.body.song  }},
+    { $push: { 'song_list': req.body.song  }},
     function (err, post) {
       if (err) return next(err);
       res.json(post);
