@@ -8,9 +8,17 @@ import { AuthenticationService } from '../authentication.service';
 })
 export class NavigationBarsComponent implements OnInit {
 
+
+  searchBox:string;
+
   constructor(public auth: AuthenticationService) { }
 
   ngOnInit() {
+    this.searchBox = '';
+  }
+
+  test1(){
+    console.log(this.searchBox)
   }
 
 }
