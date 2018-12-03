@@ -3,6 +3,9 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Track } from './track';
 import { ApiService } from '../api.service';
 import { DataSource } from '@angular/cdk/collections';
+import { AuthenticationService, UserDetails } from "../authentication.service";
+
+declare var $: any;
 
 @Component({
   selector: 'app-track',
@@ -20,7 +23,16 @@ export class TrackComponent implements OnInit {
   songs: any;
   audio:any;
 
-  constructor(private api: ApiService) {
+  playlists: any;
+
+  userDetails : UserDetails;
+
+  songBody = {
+    song: ''
+  }
+
+  constructor(private api: ApiService,
+    private auth: AuthenticationService) {
   // this.data.currentMessage.subscribe(message => this.trackInfo = message)
   }
 
@@ -40,6 +52,8 @@ export class TrackComponent implements OnInit {
   ngOnInit() {
     // console.log(this.trackToDisplay);
     console.log("GETTING ALL SONGS (ngOnInit)")
+
+    this.userDetails = this.auth.getUserDetails();
     this.api.getSongs()
       .subscribe(res => {
         console.log(res);
@@ -52,6 +66,38 @@ export class TrackComponent implements OnInit {
   clickedPlay(track: Track){
     // console.log(track);
     this.onClickPlay.emit(track);
+  }
+
+  showPlaylists(songID){
+    this.songBody.song = songID;
+    console.log("song ID "+this.songBody.song)
+    this.openModal();
+    this.api.getPlaylistsByUser(this.userDetails._id)
+    .subscribe(res => {
+      console.log(res);
+      this.playlists = res;
+      console.log(this.playlists);
+    }, err => {
+      console.log(err);
+    });
+  }
+
+  addToPlaylist(id){
+    console.log("playlists ID" + id);
+    this.api.addSongToPlaylist(id, this.songBody.song)
+    .subscribe(res => {
+      console.log(res);
+    }, err => {
+      console.log(err);
+    });
+  }
+
+  public openModal(){
+    $('#myModal').modal('show');
+  }
+
+  public closeModal(){
+    $('#myModal').modal('hide');
   }
 
 }

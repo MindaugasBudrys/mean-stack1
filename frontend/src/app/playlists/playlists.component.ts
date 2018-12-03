@@ -59,6 +59,19 @@ export class PlaylistsComponent implements OnInit {
     this.closeConfModal();
   }
 
+  public createPlaylist(){
+    this.playlistReq.user = this.userDetails._id;
+    console.log(this.playlistReq);
+    this.api.createPlaylist(this.playlistReq)
+    .subscribe(res => {
+      console.log(res);
+    }, err => {
+      console.log(err);
+    });
+    this.refresh();
+    this.closeModal();
+  }
+
   public openConfModal(id){
     this.tempID = id;
     $('#confirmationModal').modal('show');
@@ -74,18 +87,5 @@ export class PlaylistsComponent implements OnInit {
 
   public closeModal(){
     $('#myModal').modal('hide');
-  }
-
-  public createPlaylist(){
-    this.playlistReq.user = this.userDetails._id;
-    console.log(this.playlistReq);
-    this.api.createPlaylist(this.playlistReq)
-    .subscribe(res => {
-      console.log(res);
-    }, err => {
-      console.log(err);
-    });
-    this.refresh();
-    this.closeModal();
   }
 }
