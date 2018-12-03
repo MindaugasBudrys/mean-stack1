@@ -19,11 +19,9 @@ module.exports.getAllUserPlaylists = function(req, res) {
 
 };
 
-
-
 module.exports.searchPlaylists = function(req, res) {
 
-  UserPlaylist.find({"title": { "$regex": req.query.title, "$options": "i" }}, function (err, post) {
+  UserPlaylist.find({"title": { "$regex": req.params.id, "$options": "i" }}, function (err, post) {
     if (err) {console.log(err)}
     res.json(post);
   });
@@ -37,15 +35,7 @@ module.exports.getPlaylistById = function(req, res) {
     res.json(post);
   });
 
-
-  // UserPlaylist
-  // .findById(req.payload._id)
-  // .exec(function(err, user) {
-  //   res.status(200).json(user);
-  // });
-
 };
-
 
 module.exports.postPlaylist = function(req, res) {
 
@@ -56,8 +46,6 @@ module.exports.postPlaylist = function(req, res) {
 
 };
 
-
-//????
 module.exports.addOneItemToPlaylist = function(req, res) {
 
   UserPlaylist.findByIdAndUpdate(
@@ -68,15 +56,8 @@ module.exports.addOneItemToPlaylist = function(req, res) {
       res.json(post);
     });
 
-    
-
 };
 
-
-
-
-
-//????
 module.exports.deleteOneItemFromPlaylist = function(req, res) {
 
   UserPlaylist.findOneAndUpdate(
@@ -87,7 +68,6 @@ module.exports.deleteOneItemFromPlaylist = function(req, res) {
       res.json(post);
     });
 };
-
 
 module.exports.deletePlaylist = function(req, res) {
 

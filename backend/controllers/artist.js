@@ -21,7 +21,7 @@ module.exports.postArtist = function(req, res) {
 
 module.exports.searchArtists = function(req, res) {
 
-  Artist.find({"name": { "$regex": req.query.title, "$options": "i" }}, function (err, post) {
+  Artist.find({"name": { "$regex": req.params.id, "$options": "i" }}, function (err, post) {
     if (err) {console.log(err)}
     res.json(post);
   });

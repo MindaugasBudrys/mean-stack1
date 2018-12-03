@@ -75,7 +75,7 @@ export class AuthenticationService {
 
 
 
-
+  //*NOTE* GAL SITA REIKK NAUDOT 24/7????????? ISSIAISKINT.
   private request(method: 'post'|'get', type: 'login'|'register'|'profile', user?: TokenPayload): Observable<any> {
     let base;
   

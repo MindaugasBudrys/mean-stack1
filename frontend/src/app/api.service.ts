@@ -8,6 +8,7 @@ const httpOptions = {
 };
 // const apiUrl = "http://52.59.195.40:3000/api";
 const apiUrl = "http://localhost:3000/api";
+const searchParam = "/search/";
 
 
 
@@ -74,6 +75,36 @@ export class ApiService {
       catchError(this.handleError)
     );
   }
+
+  searchSongs(text): Observable<any>{
+    return this.http.get(apiUrl + searchParam + "songs/" + text, httpOptions)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
+  searchAlbums(text): Observable<any>{
+    return this.http.get(apiUrl + searchParam + "albums/" + text, httpOptions)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
+  searchArtists(text): Observable<any>{
+    return this.http.get(apiUrl + searchParam + "artists/" + text, httpOptions)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
+  searchPlaylists(text): Observable<any>{
+    return this.http.get(apiUrl + searchParam + "playlists/" + text, httpOptions)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
+
 
   // postSong(data): Observable<any> {
   //   console.log(apiUrl);
