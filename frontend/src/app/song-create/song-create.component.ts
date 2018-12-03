@@ -34,14 +34,14 @@ export class SongCreateComponent implements OnInit {
     });
   }
 
-  onFormSubmit(form:NgForm) {
-    this.api.postSong(form)
-      .subscribe(res => {
-          let id = res['_id'];
-          this.router.navigate(['/song-details', id]);
-        }, (err) => {
-          console.log(err);
-        });
-  }
+  // onFormSubmit(form:NgForm) {
+  //   this.api.postSong(form)
+  //     .subscribe(res => {
+  //         let id = res['_id'];
+  //         this.router.navigate(['/song-details', id]);
+  //       }, (err) => {
+  //         console.log(err);
+  //       });
+  // }
 
 }

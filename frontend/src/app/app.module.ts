@@ -23,12 +23,13 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { HomeComponent } from './home/home.component';
-// import { PlaylistsComponent } from './playlists/playlists.component';
+import { PlaylistsComponent } from './playlists/playlists.component';
 
 const appRoutes: Routes = [
 
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'playlists', component: PlaylistsComponent, canActivate: [AuthGuardService] },
   { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuardService] },
   { path: 'songs',
@@ -60,7 +61,7 @@ const appRoutes: Routes = [
     ProfileComponent,
     NavigationBarsComponent,
     HomeComponent,
-    //PlaylistsComponent
+    PlaylistsComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
