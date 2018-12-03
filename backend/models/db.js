@@ -21,3 +21,4 @@ require('./Album');
 require('./Artist');
 require('./Genre');
 require('./Song');
+require('./UserPlaylist');

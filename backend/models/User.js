@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-//node's crpyto for password (salt+hashing)
+//node's crpyto for password handling (salt+hashing)
 var crypto = require('crypto');
 
 //json web token

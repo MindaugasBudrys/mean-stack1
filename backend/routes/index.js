@@ -15,6 +15,7 @@ var ctrlAuth = require('../controllers/authentication');
 var ctrlArtist = require('../controllers/artist');
 var ctrlAlbum = require('../controllers/album');
 var ctrlSong = require('../controllers/song');
+var ctrlPlaylist = require('../controllers/userplaylist');
 
 
 //-------------- methods for each route
@@ -36,10 +37,17 @@ router.get('/album', ctrlAlbum.getAllAlbums);
 router.post('/album', ctrlAlbum.postAlbum);
 router.put('/album/' + ':id', ctrlAlbum.editAlbum);
 
-//song Song
+//song 
 router.get('/songs', ctrlSong.getAllSongs);
 router.get('/songs', ctrlSong.getSongById);
 router.post('/songs', ctrlSong.postSong);
+
+//playlist
+router.get('/playlist', ctrlPlaylist.getAllPlaylists);
+router.get('/playlist/' + ':id', ctrlPlaylist.getPlaylistById);
+router.post('/playlist', ctrlPlaylist.postPlaylist);
+router.put('/playlist/push/:id', ctrlPlaylist.addOneItemToPlaylist);
+router.put('/playlist/pull/:id', ctrlPlaylist.deleteOneItemFromPlaylist);
 
 
 
