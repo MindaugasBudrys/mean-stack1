@@ -84,27 +84,27 @@ export class ApiService {
     );
   }
 
+
+
+  //search methods
   searchSongs(text): Observable<any>{
     return this.http.get(apiUrl + searchParam + "songs/" + text, httpOptions)
       .pipe(
         catchError(this.handleError)
       );
   }
-
   searchAlbums(text): Observable<any>{
     return this.http.get(apiUrl + searchParam + "albums/" + text, httpOptions)
       .pipe(
         catchError(this.handleError)
       );
   }
-
   searchArtists(text): Observable<any>{
     return this.http.get(apiUrl + searchParam + "artists/" + text, httpOptions)
       .pipe(
         catchError(this.handleError)
       );
   }
-
   searchPlaylists(text): Observable<any>{
     return this.http.get(apiUrl + searchParam + "playlists/" + text, httpOptions)
       .pipe(

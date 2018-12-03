@@ -1,3 +1,59 @@
-<p>
-  search works!
-</p>
+<div class="container-fluid scrollable-table">
+  <table class="row table table-bordered table-stripped table-hover">
+    <thead>
+      <tr>
+        <th class="col-lg-1 col-md-1 col-sm-1 hidden-xs">#</th>
+        <th class="col-lg-8 col-md-8 col-sm-8 col-xs-8">TITLE</th>
+        <th class="col-lg-2 col-md-2 col-sm-2 hidden-xs">RELEASE DATE</th>
+        <th class="col-lg-1 col-md-1 col-sm-1 hidden-xs">+</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let element of resultSongs; let i = index">
+        <td class="hidden-xs">{{ element.track_number }}</td>
+        <td class="col-xs-12"><button class="mat-icon-button controlButton" (click)="clickedPlay(element)">
+          <i class="material-icons md-dark md-24">
+              play_circle_outline
+          </i>
+      </button>{{ element.title }}</td>
+        <td class="hidden-xs">{{ element.album.release_date }}</td>
+        <td class="hidden-xs">
+          <button (click)="showPlaylists(element._id)" class="mat-icon-button controlButton">
+          <i class="material-icons md-dark md-24">
+            playlist_add
+          </i>
+        </button>
+      </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+
+<div class="container-fluid scrollable-table bg">
+  <table class="row table table-bordered table-stripped table-hover">
+    <thead>
+      <tr>
+        <th class="col-lg-4 col-md-4 col-sm-4 col-xs-5">TITLE</th>
+        <th class="col-lg-5 col-md-5 col-sm-5 hidden-xs">DESCRIPTION</th>
+        <th class="col-lg-2 col-md-2 col-sm-2 hidden-xs">DATE</th>
+        <th class="col-lg-1 col-md-1 col-sm-1 col-xs-5">-</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let element of resultPlaylists; let i = index">
+        <td>{{ element.title }}</td>
+        <td class="hidden-xs">{{ element.description }}</td>
+        <td class="hidden-xs">{{ element.date_created }}</td>
+        <td>
+        <button (click)="openConfModal(element._id)" class="mat-icon-button controlButton">
+          <i class="material-icons md-dark md-24">
+            delete_forever
+          </i>
+        </button>
+      </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
