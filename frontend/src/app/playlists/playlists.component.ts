@@ -17,6 +17,8 @@ export class PlaylistsComponent implements OnInit {
     user: ''
   };
 
+  public tempID: any;
+
   public userDetails: UserDetails;
   public playlists: any;
 
@@ -34,6 +36,16 @@ export class PlaylistsComponent implements OnInit {
     this.getPlaylistsByUser();
   }
 
+  public deletePlaylist(data){
+    this.api.deletePlaylist(data)
+    .subscribe(res => {
+      console.log(res);
+    }, err => {
+      console.log(err);
+    });
+    this.refresh();
+  }
+
   public getPlaylistsByUser(){
     // console.log(this.userDetails._id);
     this.api.getPlaylistsByUser(this.userDetails._id)
@@ -44,10 +56,24 @@ export class PlaylistsComponent implements OnInit {
     }, err => {
       console.log(err);
     });
+    this.closeConfModal();
+  }
+
+  public openConfModal(id){
+    this.tempID = id;
+    $('#confirmationModal').modal('show');
+  }
+  
+  public closeConfModal(){
+    $('#confirmationModal').modal('hide');
   }
 
   public openModal(){
     $('#myModal').modal('show');
+  }
+
+  public closeModal(){
+    $('#myModal').modal('hide');
   }
 
   public createPlaylist(){
@@ -60,6 +86,6 @@ export class PlaylistsComponent implements OnInit {
       console.log(err);
     });
     this.refresh();
-    $('#myModal').modal('hide');
+    this.closeModal();
   }
 }
