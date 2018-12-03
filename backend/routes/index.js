@@ -59,7 +59,4 @@ router.get('/search/artists', ctrlArtist.searchArtists);
 router.get('/search/albums', ctrlAlbum.searchAlbums);
 router.get('/search/playlists', ctrlPlaylist.searchPlaylists);
 
-
-
-
 module.exports = router;
