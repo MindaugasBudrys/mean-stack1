@@ -21,12 +21,6 @@ module.exports.searchForSongs = function(req, res) {
     res.json(post);
   });
   
-
-  // Song.find({$text: {$search: req.query.title}}, function (err, post) {
-  //   if (err) return next(err);
-  //   res.json(post);
-  // });
-
 };
 
 module.exports.getSongById = function(req, res) {

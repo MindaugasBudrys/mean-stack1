@@ -11,6 +11,16 @@ module.exports.getAllPlaylists = function(req, res) {
 };
 
 
+
+module.exports.searchPlaylists = function(req, res) {
+
+  UserPlaylist.find({"title": { "$regex": req.query.title, "$options": "i" }}, function (err, post) {
+    if (err) {console.log(err)}
+    res.json(post);
+  });
+
+};
+
 module.exports.getPlaylistById = function(req, res) {
 
   UserPlaylist.findById(req.params.id, function (err, post) {
