@@ -53,7 +53,7 @@ export class ApiService {
       map(this.extractData),
       catchError(this.handleError));
   }
-
+/****PLAYLISTS RELATED APIS****/
   createPlaylist(data): Observable<any>{
     return this.http.post(apiUrl + "/playlist", data, httpOptions)
       .pipe(
@@ -67,6 +67,13 @@ export class ApiService {
       .pipe(
         catchError(this.handleError)
       );
+  }
+
+  getPlaylistById(data): Observable<any>{
+    return this.http.get(apiUrl + "/playlist/" + data, httpOptions)
+    .pipe(
+      catchError(this.handleError)
+    );
   }
 
   addSongToPlaylist(id, data): Observable<any>{
@@ -84,6 +91,7 @@ export class ApiService {
     );
   }
 
+/**********************************/
   searchSongs(text): Observable<any>{
     return this.http.get(apiUrl + searchParam + "songs/" + text, httpOptions)
       .pipe(

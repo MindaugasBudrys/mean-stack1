@@ -90,6 +90,7 @@ export class TrackComponent implements OnInit {
     }, err => {
       console.log(err);
     });
+    this.closeModal();
   }
 
   public openModal(){

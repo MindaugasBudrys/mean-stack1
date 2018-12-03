@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
-body { margin: 0; margin-top: 40px; font-family: 'Consolas', sans-serif; overflow-y:hidden; }
+body { margin: 0; margin-top: 55px; font-family: 'Consolas', sans-serif; overflow-y:hidden; }
 
 .scrollable-table{
   /* display: flex;

@@ -33,7 +33,7 @@ export class SongComponent implements OnInit {
     this.data.currentMessage.subscribe(message => this.trackInfo = message)
   }
 
-  newMessage($event) {
+  newSongPlayed($event) {
 
 
     console.log('new message: @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@');
