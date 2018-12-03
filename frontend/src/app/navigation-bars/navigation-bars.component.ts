@@ -9,12 +9,17 @@ import { Router } from '@angular/router';
 })
 export class NavigationBarsComponent implements OnInit {
 
-  constructor(
-    public auth: AuthenticationService,
-    private router: Router
-    ) { }
+
+  searchBox:string;
+
+  constructor(public auth: AuthenticationService) { }
 
   ngOnInit() {
+    this.searchBox = '';
+  }
+
+  test1(){
+    console.log(this.searchBox)
   }
 
 }

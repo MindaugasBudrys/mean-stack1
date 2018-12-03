@@ -10,6 +10,15 @@ module.exports.getAllAlbums = function(req, res) {
 
 };
 
+module.exports.searchAlbums = function(req, res) {
+
+  Album.find({"title": { "$regex": req.query.title, "$options": "i" }}, function (err, post) {
+    if (err) {console.log(err)}
+    res.json(post);
+  });
+
+};
+
 module.exports.postAlbum = function(req, res) {
 
     Album.create(req.body, function (err, post) {

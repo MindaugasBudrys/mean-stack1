@@ -29,6 +29,8 @@ router.post('/login', ctrlAuth.login);
 
 //artists
 router.get('/artists', ctrlArtist.getAllArtists);
+
+
 router.post('/artists', ctrlArtist.postArtist);
 router.put('/artists/' + ':id', ctrlArtist.editArtist);
 
@@ -39,7 +41,7 @@ router.put('/album/' + ':id', ctrlAlbum.editAlbum);
 
 //song 
 router.get('/songs', ctrlSong.getAllSongs);
-router.get('/songs', ctrlSong.getSongById);
+router.get('/song/:id', ctrlSong.getSongById);
 router.post('/songs', ctrlSong.postSong);
 
 //playlist
@@ -49,5 +51,15 @@ router.get('/playlist/user/' + ':id', ctrlPlaylist.getAllUserPlaylists);
 router.post('/playlist', ctrlPlaylist.postPlaylist);
 router.put('/playlist/push/:id', ctrlPlaylist.addOneItemToPlaylist);
 router.put('/playlist/pull/:id', ctrlPlaylist.deleteOneItemFromPlaylist);
+
+
+//search (mby would be better to have a search controller)
+router.get('/search/songs', ctrlSong.searchForSongs);
+router.get('/search/artists', ctrlArtist.searchArtists);
+router.get('/search/albums', ctrlAlbum.searchAlbums);
+router.get('/search/playlists', ctrlPlaylist.searchPlaylists);
+
+
+
 
 module.exports = router;

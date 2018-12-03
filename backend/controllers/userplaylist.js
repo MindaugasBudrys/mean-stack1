@@ -22,6 +22,16 @@ module.exports.getAllUserPlaylists = function(req, res) {
 };
 
 
+
+module.exports.searchPlaylists = function(req, res) {
+
+  UserPlaylist.find({"title": { "$regex": req.query.title, "$options": "i" }}, function (err, post) {
+    if (err) {console.log(err)}
+    res.json(post);
+  });
+
+};
+
 module.exports.getPlaylistById = function(req, res) {
 
   UserPlaylist.findById(req.params.id, function (err, post) {
@@ -54,7 +64,7 @@ module.exports.addOneItemToPlaylist = function(req, res) {
 
   UserPlaylist.findByIdAndUpdate(
     { _id: req.params.id },
-    { $push: { song_list: req.body.song  }},
+    { $push: { 'song_list': req.body.song  }},
     function (err, post) {
       if (err) return next(err);
       res.json(post);

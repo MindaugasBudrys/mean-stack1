@@ -19,6 +19,18 @@ module.exports.postArtist = function(req, res) {
 
 };
 
+module.exports.searchArtists = function(req, res) {
+
+  Artist.find({"name": { "$regex": req.query.title, "$options": "i" }}, function (err, post) {
+    if (err) {console.log(err)}
+    res.json(post);
+  });
+
+};
+
+
+
+
 module.exports.editArtist = function(req, res) {
 
   Artist.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
