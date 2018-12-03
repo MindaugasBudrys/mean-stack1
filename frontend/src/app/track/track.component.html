@@ -25,7 +25,7 @@
         </button>{{ element.title }}</td>
           <td class="hidden-xs">{{ element.album.release_date }}</td>
           <td class="hidden-xs">
-            <button class="mat-icon-button controlButton">
+            <button (click)="showPlaylists(element._id)" class="mat-icon-button controlButton">
             <i class="material-icons md-dark md-24">
               playlist_add
             </i>
@@ -35,3 +35,26 @@
       </tbody>
     </table>
   </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4>Add a song to playlist</h4>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="title">All playlists</label><br>
+              <ol>
+                <li *ngFor="let element of playlists; let i = index">
+                  <a (click)="addToPlaylist(element._id)">{{ element.title }}</a></li>
+              </ol>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-danger" (click)="closeModal()">CANCEL</button>
+            <!-- <button class="btn btn-success">ADD <i class="material-icons md-dark md-18">add_circle_outline</i></button> -->
+          </div>
+        </div>
+      </div>
+    </div>
