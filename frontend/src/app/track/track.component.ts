@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 import { Track } from './track';
-import { PlayerService} from '../music-player/player-service';
 import { ApiService } from '../api.service';
 import { DataSource } from '@angular/cdk/collections';
 
@@ -16,28 +15,27 @@ export class TrackComponent implements OnInit {
 
   @Output() onClickPlay = new EventEmitter<Track>();
 
-  trackInfo: Track;
+  // trackInfo: Track;
 
   songs: any;
   audio:any;
 
-  constructor(private api: ApiService,
-    private data: PlayerService) {
-  this.data.currentMessage.subscribe(message => this.trackInfo = message)
+  constructor(private api: ApiService) {
+  // this.data.currentMessage.subscribe(message => this.trackInfo = message)
   }
 
-  newMessage($event) {
+  // newMessage($event) {
 
-    console.log('new message: @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@');
-    console.log($event);
-    //this.artistImage = 'http://localhost:3000/api/file/download/picture?objectID=' + $event.album.artist.artist_picture;
-    // this.musicPlayerImage = "http://localhost:3000/api/file/download/picture?objectID=" + trackInfo.album.album_cover;
+  //   console.log('new message: @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@');
+  //   console.log($event);
+  //   //this.artistImage = 'http://localhost:3000/api/file/download/picture?objectID=' + $event.album.artist.artist_picture;
+  //   // this.musicPlayerImage = "http://localhost:3000/api/file/download/picture?objectID=" + trackInfo.album.album_cover;
 
-    this.data.sendTrackEvent($event);
-    console.log('THIS TRACK INFO: ')
-    console.log(this.trackInfo)
+  //   this.data.sendTrackEvent($event);
+  //   console.log('THIS TRACK INFO: ')
+  //   console.log(this.trackInfo)
 
-  }
+  // }
 
   ngOnInit() {
     // console.log(this.trackToDisplay);
@@ -58,15 +56,15 @@ export class TrackComponent implements OnInit {
 
 }
 
-export class SongDataSource extends DataSource<any> {
-  constructor(private api: ApiService) {
-    super()
-  }
-  connect() {
-    console.log('songdatasource connect.')
+// export class SongDataSource extends DataSource<any> {
+//   constructor(private api: ApiService) {
+//     super()
+//   }
+//   connect() {
+//     console.log('songdatasource connect.')
 
-    return this.api.getSongs();
-  }
-  disconnect() {
-  }
-}
+//     return this.api.getSongs();
+//   }
+//   disconnect() {
+//   }
+// }

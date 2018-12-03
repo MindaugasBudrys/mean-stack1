@@ -10,6 +10,17 @@ module.exports.getAllPlaylists = function(req, res) {
 
 };
 
+module.exports.getAllUserPlaylists = function(req, res) {
+
+  console.log(req.params)
+
+  UserPlaylist.find({ user: req.params.id}, function (err, products) {
+      if (err) return next(err);
+      res.json(products);
+  });
+
+};
+
 
 
 module.exports.searchPlaylists = function(req, res) {
