@@ -7,9 +7,7 @@ var auth = jwt({
   userProperty: 'payload'
 });
 
-
 //ALL CONTROLLERS HAVE TO BE HERE?
-
 var ctrlProfile = require('../controllers/profile');
 var ctrlAuth = require('../controllers/authentication');
 var ctrlArtist = require('../controllers/artist');
@@ -54,11 +52,55 @@ router.put('/playlist/pull/:id', ctrlPlaylist.deleteOneItemFromPlaylist);
 router.delete('/playlist/:id', ctrlPlaylist.deletePlaylist);
 
 
-//search (mby would be better to have a search controller)
+//search (mby would be better to have a search controller?)
 router.get('/search/songs/:id', ctrlSong.searchForSongs);
 router.get('/search/artists/:id', ctrlArtist.searchArtists);
 router.get('/search/albums/:id', ctrlAlbum.searchAlbums);
 router.get('/search/playlists/:id', ctrlPlaylist.searchPlaylists);
+
+// //-------------- methods for each route
+
+// // profile routes
+// router.get('/profile', auth, ctrlProfile.profileRead);
+
+// // authentication
+// router.post('/register', ctrlAuth.register);
+// router.post('/login', ctrlAuth.login);
+
+// //artists routes
+// router.get('/artists', auth, ctrlArtist.getAllArtists);
+
+
+// router.post('/artists', auth, ctrlArtist.postArtist);
+// router.put('/artists/' + ':id', auth, ctrlArtist.editArtist);
+
+// //album routes
+// router.get('/album', auth, ctrlAlbum.getAllAlbums);
+// router.post('/album', auth, ctrlAlbum.postAlbum);
+// router.put('/album/' + ':id', auth, ctrlAlbum.editAlbum);
+
+// //song routes
+// router.get('/songs', auth, ctrlSong.getAllSongs);
+// router.get('/song/:id', auth, ctrlSong.getSongById);
+// router.post('/songs', auth, ctrlSong.postSong);
+
+// //playlist routes
+// router.get('/playlist', auth, ctrlPlaylist.getAllPlaylists);
+// router.get('/playlist/' + ':id', auth, ctrlPlaylist.getPlaylistById);
+// router.get('/playlist/user/' + ':id', auth, ctrlPlaylist.getAllUserPlaylists);
+// router.post('/playlist', auth, ctrlPlaylist.postPlaylist);
+// router.put('/playlist/push/:id', auth, ctrlPlaylist.addOneItemToPlaylist);
+// router.put('/playlist/pull/:id', auth, ctrlPlaylist.deleteOneItemFromPlaylist);
+// router.delete('/playlist/:id', auth, ctrlPlaylist.deletePlaylist);
+
+
+// //search routes
+// router.get('/search/songs/:id', auth, ctrlSong.searchForSongs);
+// router.get('/search/artists/:id', auth, ctrlArtist.searchArtists);
+// router.get('/search/albums/:id', auth, ctrlAlbum.searchAlbums);
+// router.get('/search/playlists/:id', auth, ctrlPlaylist.searchPlaylists);
+
+
 
 
 module.exports = router;

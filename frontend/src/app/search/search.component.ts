@@ -39,7 +39,6 @@ export class SearchComponent implements OnInit {
     this.route.params.subscribe( params => {
       console.log('PARAMETRAI: ')
 
-
       let par = params['searchfield'];
       console.log(par)
       this.api.searchSongs(par)

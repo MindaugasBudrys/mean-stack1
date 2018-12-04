@@ -98,6 +98,7 @@ export class PlaylistsComponent implements OnInit {
   public backToPlaylists(){
     this.isSongsShowed = false;
     this.refresh();
+    this.router.navigate(['playlists']);
   }
 
   public deletePlaylist(data){

@@ -23,7 +23,7 @@ module.exports.searchForSongs = function(req, res) {
   .exec(function (err, data) {
     if (err) { return next(err); }
     res.json(data);
-  });;
+  });
   
 };
 

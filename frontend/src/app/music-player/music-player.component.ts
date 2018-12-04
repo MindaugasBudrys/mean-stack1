@@ -10,14 +10,10 @@ import { Track } from '../track/track'
 })
 export class MusicPlayerComponent implements OnInit {
 
-
-  
   message:string;
-
 
   //we can set this to a default image before starting to play something
   musicPlayerImage:string = '';
-
 
   public audio = new Audio();
   public currentlyPlaying : boolean = false;
@@ -82,20 +78,20 @@ export class MusicPlayerComponent implements OnInit {
 
   ngOnInit() {
 
-    this.currentTrack = new Track();
-    console.log('THIS TRACK NEW...')
+    // this.currentTrack = new Track();
+    // console.log('THIS TRACK NEW...')
 
-    //og 10.152.216.39
-    //mb 10.152.194.159
+    // //og 10.152.216.39
+    // //mb 10.152.194.159
 
-    // this.audio.src = "http://10.152.194.159:8080/api/file/download?objectID=5bd84d2e79f5a00350fc9e17";
+    // // this.audio.src = "http://10.152.194.159:8080/api/file/download?objectID=5bd84d2e79f5a00350fc9e17";
 
-    this.audio.src = "http://localhost:3000/api/file/download?objectID=5beb267482409b11702639c6";
-    this.audio.load();
-    this.audio.volume = 0.8;
-    this.progressBar();
-    this.volume = 52;
-    this.audio.volume = 0.52;
+    // this.audio.src = "http://localhost:3000/api/file/download?objectID=5beb267482409b11702639c6";
+    // this.audio.load();
+    // this.audio.volume = 0.8;
+    // this.progressBar();
+    // this.volume = 52;
+    // this.audio.volume = 0.52;
   }
 
   public progressCount(duration, currTime){
