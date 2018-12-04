@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
 import { AuthenticationService, UserDetails } from "../authentication.service";
+import { PlayerService} from '../music-player/player-service';
 
 declare var $: any;
 
@@ -10,6 +11,8 @@ declare var $: any;
   styleUrls: ['./playlists.component.css']
 })
 export class PlaylistsComponent implements OnInit {
+
+  isSongsShowed: boolean = false;
 
   public playlistReq: any = {
     title: '',
@@ -23,16 +26,52 @@ export class PlaylistsComponent implements OnInit {
   public playlists: any;
 
   constructor(private api: ApiService,
-    private auth: AuthenticationService) {
+    private auth: AuthenticationService,
+    private data: PlayerService) {
     }
 
   ngOnInit() {
     this.refresh();
   }
 
+  newSongPlayed($event) {
+
+
+    console.log('new message: @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@');
+    console.log($event);
+    // this.artistImage = 'http://localhost:3000/api/file/download/picture?objectID=' + $event.album.artist.artist_picture;
+    // this.musicPlayerImage = "http://localhost:3000/api/file/download/picture?objectID=" + trackInfo.album.album_cover;
+
+    this.data.sendTrackEvent($event);
+    console.log('THIS TRACK INFO: ')
+    // console.log(this.trackInfo)
+  }
+
   public refresh(){
     this.userDetails = this.auth.getUserDetails();
     this.getPlaylistsByUser();
+  }
+
+  public openPlaylist(data){
+    this.isSongsShowed = true;
+    this.api.getPlaylistById(data)
+    .subscribe(res => {
+
+      this.playlists = res;
+      console.log(this.playlists);
+    }, err => {
+      console.log(err);
+    });
+    // if(this.isSongsShowed){
+    //   this.isSongsShowed = false;
+    // } else {
+    //   this.isSongsShowed = true; 
+    // }
+  }
+
+  public backToPlaylists(){
+    this.isSongsShowed = false;
+    this.refresh();
   }
 
   public deletePlaylist(data){

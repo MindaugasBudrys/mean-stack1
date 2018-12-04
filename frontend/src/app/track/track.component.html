@@ -4,7 +4,6 @@
         play_circle_outline
     </i>
 </button> -->
-
 <div class="container-fluid scrollable-table">
     <table class="row table table-bordered table-stripped table-hover">
       <thead>
@@ -22,7 +21,7 @@
             <i class="material-icons md-dark md-24">
                 play_circle_outline
             </i>
-        </button>{{ element.title }}</td>
+        </button><b>{{ element.album.artist.name }}</b> {{ element.title }}</td>
           <td class="hidden-xs">{{ element.album.release_date }}</td>
           <td class="hidden-xs">
             <button (click)="showPlaylists(element._id)" class="mat-icon-button controlButton">
