@@ -1,34 +1,48 @@
+<ng-container *ngIf="!isSongsShowed">
 <button class="mat-icon-button controlButton" (click)="openModal()">
   <i class="material-icons md-dark md-24">
     add_circle_outline
   </i>
 </button>
 <div class="container-fluid scrollable-table bg">
-    <table class="row table table-bordered table-stripped table-hover">
-      <thead>
-        <tr>
-          <th class="col-lg-4 col-md-4 col-sm-4 col-xs-5">TITLE</th>
-          <th class="col-lg-5 col-md-5 col-sm-5 hidden-xs">DESCRIPTION</th>
-          <th class="col-lg-2 col-md-2 col-sm-2 hidden-xs">DATE</th>
-          <th class="col-lg-1 col-md-1 col-sm-1 col-xs-5">-</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let element of playlists; let i = index">
-          <td>{{ element.title }}</td>
-          <td class="hidden-xs">{{ element.description }}</td>
-          <td class="hidden-xs">{{ element.date_created }}</td>
-          <td>
-          <button (click)="openConfModal(element._id)" class="mat-icon-button controlButton">
-            <i class="material-icons md-dark md-24">
-              delete_forever
-            </i>
-          </button>
-        </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+  <table class="row table table-bordered table-stripped table-hover">
+    <thead>
+      <tr>
+        <th class="col-lg-4 col-md-4 col-sm-4 col-xs-5">TITLE</th>
+        <th class="col-lg-5 col-md-5 col-sm-5 hidden-xs">DESCRIPTION</th>
+        <th class="col-lg-2 col-md-2 col-sm-2 hidden-xs">DATE</th>
+        <th class="col-lg-1 col-md-1 col-sm-1 col-xs-5">-</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let element of playlists; let i = index">
+        <td (click)="openPlaylist(element._id)">{{ element.title }}</td>
+        <td class="hidden-xs">{{ element.description }}</td>
+        <td class="hidden-xs">{{ element.date_created }}</td>
+        <td>
+        <button (click)="openConfModal(element._id)" class="mat-icon-button controlButton">
+          <i class="material-icons md-dark md-24">
+            delete_forever
+          </i>
+        </button>
+      </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</ng-container>
+
+<ng-container *ngIf="isSongsShowed">
+  <button class="mat-icon-button controlButton" (click)="backToPlaylists()">
+    <i class="material-icons md-dark md-24">
+      arrow_back
+    </i>
+  </button>
+  <app-track
+  [tracksToDisplay]="playlists.song_list"
+  (onClickPlay)="newSongPlayed($event)">
+  </app-track>
+</ng-container>
 
   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">

@@ -30,10 +30,15 @@ module.exports.searchPlaylists = function(req, res) {
 
 module.exports.getPlaylistById = function(req, res) {
 
-  UserPlaylist.findById(req.params.id, function (err, post) {
-    if (err) return next(err);
-    res.json(post);
+  UserPlaylist.findById(req.params.id).populate({ 
+    path: 'song_list',
+    populate: { path: 'album', populate: {path: 'artist'}}
+  })
+  .exec(function (err, data) {
+    if (err) { return next(err); }
+    res.json(data);
   });
+
 
 };
 
