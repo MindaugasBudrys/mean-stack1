@@ -28,7 +28,7 @@ export class MusicPlayerComponent implements OnInit {
   public currentTime : string = "0.00";
   public fullTime : string = "0.00";
 
-  currentTrack: Track;
+  currentTrack: Track = null;
 
 
   constructor(private data: PlayerService) {

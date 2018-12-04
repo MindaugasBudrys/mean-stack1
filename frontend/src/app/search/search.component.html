@@ -1,3 +1,106 @@
-<p>
-  search works!
-</p>
+<!-- <div class="container-fluid scrollable-table">
+  <table class="row table table-bordered table-stripped table-hover">
+    <thead>
+      <tr>
+        <th class="col-lg-1 col-md-1 col-sm-1 hidden-xs">#</th>
+        <th class="col-lg-8 col-md-8 col-sm-8 col-xs-8">TITLE</th>
+        <th class="col-lg-2 col-md-2 col-sm-2 hidden-xs">RELEASE DATE</th>
+        <th class="col-lg-1 col-md-1 col-sm-1 hidden-xs">+</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let element of resultSongs; let i = index">
+        <td class="hidden-xs">{{ element.track_number }}</td>
+        <td class="col-xs-12"><button class="mat-icon-button controlButton" (click)="clickedPlay(element)">
+          <i class="material-icons md-dark md-24">
+              play_circle_outline
+          </i>
+      </button>{{ element.title }}</td>
+        <td class="hidden-xs">{{ element.album.release_date }}</td>
+        <td class="hidden-xs">
+          <button (click)="showPlaylists(element._id)" class="mat-icon-button controlButton">
+          <i class="material-icons md-dark md-24">
+            playlist_add
+          </i>
+        </button>
+      </td>
+      </tr>
+    </tbody>
+  </table>
+</div> -->
+
+
+<app-track
+  [tracksToDisplay]="resultSongs"
+  (onClickPlay)="newMessage($event)">
+</app-track>
+
+
+
+<div class="container-fluid scrollable-table bg">
+  <table class="row table table-bordered table-stripped table-hover">
+    <thead>
+      <tr>
+        <th class="col-lg-4 col-md-4 col-sm-4 col-xs-5">TITLE</th>
+        <th class="col-lg-5 col-md-5 col-sm-5 hidden-xs">DESCRIPTION</th>
+        <th class="col-lg-2 col-md-2 col-sm-2 hidden-xs">DATE</th>
+        <th class="col-lg-1 col-md-1 col-sm-1 col-xs-5">-</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let element of resultPlaylists; let i = index">
+        <td>{{ element.title }}</td>
+        <td class="hidden-xs">{{ element.description }}</td>
+        <td class="hidden-xs">{{ element.date_created }}</td>
+        <td>
+        <button (click)="openConfModal(element._id)" class="mat-icon-button controlButton">
+          <i class="material-icons md-dark md-24">
+            delete_forever
+          </i>
+        </button>
+      </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4>Create a new playlist</h4>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="title">Playlist title</label><br>
+          <input type="text" class="form-control" name="title" placeholder="Enter a playlist title" [(ngModel)]="playlistReq.title">
+          <label for="description">Playlist description</label><br>
+          <input type="text" class="form-control" name="description" placeholder="Enter a playlist description" [(ngModel)]="playlistReq.description">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-danger" (click)="closeModal()">CANCEL</button>
+        <button class="btn btn-success" (click)="createPlaylist()">ADD <i class="material-icons md-dark md-18">add_circle_outline</i></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <label for="title"><h5>WARNING!</h5></label>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label>Are you sure you want to delete this?</label>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-danger" (click)="closeConfModal()">CANCEL</button>
+          <button class="btn btn-success" (click)="deletePlaylist(tempID)">DELETE <i class="material-icons md-dark md-18">delete_forever</i></button>
+        </div>
+      </div>
+    </div>
+  </div>

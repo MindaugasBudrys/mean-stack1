@@ -28,7 +28,6 @@ export class PlaylistsComponent implements OnInit {
   constructor(private api: ApiService,
     private auth: AuthenticationService,
     private data: PlayerService) {
-
     }
 
   ngOnInit() {

@@ -16,10 +16,14 @@ module.exports.getAllSongs = function(req, res) {
 
 module.exports.searchForSongs = function(req, res) {
 
-  Song.find({"title": { "$regex": req.params.id, "$options": "i" }}, function (err, post) {
-    if (err) {console.log(err)}
-    res.json(post);
-  });
+  Song.find({"title": { "$regex": req.params.id, "$options": "i" }}).populate({ 
+    path: 'album',
+    populate: { path: 'artist'}
+  })
+  .exec(function (err, data) {
+    if (err) { return next(err); }
+    res.json(data);
+  });;
   
 };
 

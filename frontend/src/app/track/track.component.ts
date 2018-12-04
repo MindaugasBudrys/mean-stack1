@@ -51,7 +51,7 @@ export class TrackComponent implements OnInit {
 
   ngOnInit() {
     // console.log(this.trackToDisplay);
-    console.log("GETTING ALL SONGS (ngOnInit)")
+    // console.log("GETTING ALL SONGS (ngOnInit)")
 
     this.userDetails = this.auth.getUserDetails();
     // this.api.getSongs()
