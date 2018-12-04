@@ -48,14 +48,14 @@ export class SongComponent implements OnInit {
 
   ngOnInit() {
     
-  console.log("GETTING ALL SONGS (ngOnInit)")
-  this.api.getSongs()
-    .subscribe(res => {
-      console.log(res);
-      this.songs = res;
-    }, err => {
-      console.log(err);
-    });
+    console.log("GETTING ALL SONGS (ngOnInit)")
+    this.api.getSongs()
+      .subscribe(res => {
+        console.log(res);
+        this.songs = res;
+      }, err => {
+        console.log(err);
+      });
 }
 
 }
