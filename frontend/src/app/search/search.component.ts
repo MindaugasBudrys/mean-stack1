@@ -75,8 +75,8 @@ export class SearchComponent implements OnInit {
     });
   }
 
-  onButtonClick(){
-
+  onPlaylistClick(id){
+    this.router.navigate(['/playlists/'+id]);
   }
 
 
@@ -95,9 +95,6 @@ export class SearchComponent implements OnInit {
 
   getAllSearchData(){
     console.log('PASEARCHINA VISKA NX: ')
-
-
-
   }
 
   public openConfModal(id){

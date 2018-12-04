@@ -27,7 +27,18 @@ const appRoutes: Routes = [
 
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'playlists', component: PlaylistsComponent, canActivate: [AuthGuardService] },
+  // { path: 'playlists', component: PlaylistsComponent, canActivate: [AuthGuardService] },
+  // { path: 'playlists/:id', component: PlaylistsComponent, canActivate: [AuthGuardService] },
+  
+  { path: 'playlists',
+        children: [
+            { path: '', component: PlaylistsComponent },
+            { path: ':id', component: PlaylistsComponent },
+        ] },
+
+
+  
+  
   { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuardService] },
   { path: 'songs',

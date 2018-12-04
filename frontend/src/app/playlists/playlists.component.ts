@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AuthenticationService, UserDetails } from "../authentication.service";
 import { PlayerService} from '../music-player/player-service';
 
@@ -27,7 +28,31 @@ export class PlaylistsComponent implements OnInit {
 
   constructor(private api: ApiService,
     private auth: AuthenticationService,
-    private data: PlayerService) {
+    private data: PlayerService,
+    public route: ActivatedRoute,
+    private router: Router) {
+
+      this.route.params.subscribe(params => {
+        console.log(params);
+        console.log( + 'db ifas');
+        if(params['id']){
+
+          this.api.getPlaylistById(params['id'])
+          .subscribe(res => {
+
+            this.playlists = res;
+            console.log(this.playlists);
+          }, err => {
+            console.log(err);
+          });
+
+
+          this.tempID = params['id'];
+          this.isSongsShowed = true;
+        }
+
+      })
+      
     }
 
   ngOnInit() {
@@ -35,8 +60,6 @@ export class PlaylistsComponent implements OnInit {
   }
 
   newSongPlayed($event) {
-
-
     console.log('new message: @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@');
     console.log($event);
     // this.artistImage = 'http://localhost:3000/api/file/download/picture?objectID=' + $event.album.artist.artist_picture;
@@ -53,6 +76,9 @@ export class PlaylistsComponent implements OnInit {
   }
 
   public openPlaylist(data){
+    this.router.navigate(['/playlists/'+data]);
+    console.log('open playlist')
+    console.log(data)
     this.isSongsShowed = true;
     this.api.getPlaylistById(data)
     .subscribe(res => {

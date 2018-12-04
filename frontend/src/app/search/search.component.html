@@ -49,7 +49,7 @@
     </thead>
     <tbody>
       <tr *ngFor="let element of resultPlaylists; let i = index">
-        <td>{{ element.title }}</td>
+        <td (click)="onPlaylistClick(element._id)">{{ element.title }}</td>
         <td class="hidden-xs">{{ element.description }}</td>
         <td class="hidden-xs">{{ element.date_created }}</td>
         <td>
