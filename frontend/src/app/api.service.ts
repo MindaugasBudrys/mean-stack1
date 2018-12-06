@@ -2,15 +2,15 @@ import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { catchError, tap, map } from 'rxjs/operators';
+import { environment } from './../environments/environment';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
 };
 // const apiUrl = "http://52.59.195.40:3000/api";
-const apiUrl = "http://localhost:3000/api";
-const searchParam = "/search/";
+// const apiUrl = "http://localhost:3000/api";
 
-
+const searchParam = "search/";
 
 @Injectable({
   providedIn: 'root'
@@ -40,14 +40,14 @@ export class ApiService {
   }
 
   getSongs(): Observable<any> {
-    console.log(apiUrl + "/songs");
-    return this.http.get(apiUrl + "/songs", httpOptions).pipe(
+    console.log(environment.apiRoute + "songs");
+    return this.http.get(environment.apiRoute + "songs", httpOptions).pipe(
       map(this.extractData),
       catchError(this.handleError));
   }
 
   getSong(id: string): Observable<any> {
-    const url = `${apiUrl + "/songs"}/${id}`;
+    const url = `${environment.apiRoute + "songs"}/${id}`;
     console.log(url);
     return this.http.get(url, httpOptions).pipe(
       map(this.extractData),
@@ -55,7 +55,7 @@ export class ApiService {
   }
 /****PLAYLISTS RELATED APIS****/
   createPlaylist(data): Observable<any>{
-    return this.http.post(apiUrl + "/playlist", data, httpOptions)
+    return this.http.post(environment.apiRoute + "playlist", data, httpOptions)
       .pipe(
         catchError(this.handleError)
       );
@@ -63,14 +63,14 @@ export class ApiService {
 
   getPlaylistsByUser(data): Observable<any>{
     console.log(data);
-    return this.http.get(apiUrl + "/playlist/user/" + data, httpOptions)
+    return this.http.get(environment.apiRoute + "playlist/user/" + data, httpOptions)
       .pipe(
         catchError(this.handleError)
       );
   }
 
   getPlaylistById(data): Observable<any>{
-    return this.http.get(apiUrl + "/playlist/" + data, httpOptions)
+    return this.http.get(environment.apiRoute + "playlist/" + data, httpOptions)
     .pipe(
       catchError(this.handleError)
     );
@@ -78,14 +78,14 @@ export class ApiService {
 
   addSongToPlaylist(id, data): Observable<any>{
     let body = {"song": data};
-    return this.http.put(apiUrl + "/playlist/push/" + id, body, httpOptions)
+    return this.http.put(environment.apiRoute + "playlist/push/" + id, body, httpOptions)
     .pipe(
       catchError(this.handleError)
     );
   }
 
   deletePlaylist(data): Observable<any>{
-    return this.http.delete(apiUrl + "/playlist/" + data, httpOptions)
+    return this.http.delete(environment.apiRoute + "playlist/" + data, httpOptions)
     .pipe(
       catchError(this.handleError)
     );
@@ -95,25 +95,25 @@ export class ApiService {
   //search methods
 /**********************************/
   searchSongs(text): Observable<any>{
-    return this.http.get(apiUrl + searchParam + "songs/" + text, httpOptions)
+    return this.http.get(environment.apiRoute + searchParam + "songs/" + text, httpOptions)
       .pipe(
         catchError(this.handleError)
       );
   }
   searchAlbums(text): Observable<any>{
-    return this.http.get(apiUrl + searchParam + "albums/" + text, httpOptions)
+    return this.http.get(environment.apiRoute + searchParam + "albums/" + text, httpOptions)
       .pipe(
         catchError(this.handleError)
       );
   }
   searchArtists(text): Observable<any>{
-    return this.http.get(apiUrl + searchParam + "artists/" + text, httpOptions)
+    return this.http.get(environment.apiRoute + searchParam + "artists/" + text, httpOptions)
       .pipe(
         catchError(this.handleError)
       );
   }
   searchPlaylists(text): Observable<any>{
-    return this.http.get(apiUrl + searchParam + "playlists/" + text, httpOptions)
+    return this.http.get(environment.apiRoute + searchParam + "playlists/" + text, httpOptions)
       .pipe(
         catchError(this.handleError)
       );

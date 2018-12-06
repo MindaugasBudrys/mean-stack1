@@ -27,8 +27,6 @@ router.post('/login', ctrlAuth.login);
 
 //artists
 router.get('/artists', ctrlArtist.getAllArtists);
-
-
 router.post('/artists', ctrlArtist.postArtist);
 router.put('/artists/' + ':id', ctrlArtist.editArtist);
 

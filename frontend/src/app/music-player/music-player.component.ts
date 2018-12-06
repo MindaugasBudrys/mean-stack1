@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { PlayerService } from './player-service';
 import { Track } from '../track/track'
+import { environment } from './../../environments/environment';
 
 @Component({
   selector: 'app-music-player',
@@ -41,8 +42,9 @@ export class MusicPlayerComponent implements OnInit {
       this.loadAndPlay(trackInfo.song_file);
  
       // getting album cover by id
-      this.musicPlayerImage = "http://localhost:3000/api/file/download/picture?objectID=" + trackInfo.album.album_cover;
-      // this.artistImage = 'http://localhost:3000/api/file/download/picture?objectID=' + trackInfo.album.artist.artist_picture;
+      
+      this.musicPlayerImage = environment.apiRoute + "file/download/picture?objectID=" + trackInfo.album.album_cover;
+      // this.artistImage = environment.apiRoute + 'file/download/picture?objectID=' + trackInfo.album.artist.artist_picture;
       console.log('API LINK: ');
       console.log(this.musicPlayerImage);
       
@@ -51,7 +53,7 @@ export class MusicPlayerComponent implements OnInit {
   }
 
   loadAndPlay(id){
-    this.audio.src = "http://localhost:3000/api/file/download?objectID=" + id;
+    this.audio.src = environment.apiRoute + "file/download?objectID=" + id;
     this.audio.load();
     this.playAudio();
     console.log(this.audio.duration);

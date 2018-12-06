@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { environment } from './../environments/environment';
 
 
 export interface UserDetails {
@@ -33,7 +34,8 @@ export class AuthenticationService {
 
 
   private token: string;
-  private backendURI = 'http://localhost:3000';
+  private backendURI = environment.apiRoute;
+
 
   constructor(private http: HttpClient, private router: Router) { }
 
@@ -81,10 +83,10 @@ export class AuthenticationService {
   
     if (method === 'post') {
       console.log(`/api/${type}`);
-      base = this.http.post(this.backendURI + `/api/${type}`, user);
+      base = this.http.post(this.backendURI + `${type}`, user);
     } else {
       //adds request header for authorization (JWT)
-      base = this.http.get(this.backendURI + `/api/${type}`, { headers: { Authorization: `Bearer ${this.getToken()}` }});
+      base = this.http.get(this.backendURI + `${type}`, { headers: { Authorization: `Bearer ${this.getToken()}` }});
     }
   
     const request = base.pipe(
