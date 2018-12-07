@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ApiService } from '../api.service';
 import { PlayerService} from '../music-player/player-service';
+import { AuthenticationService, UserDetails } from "../authentication.service";
 
 declare var $: any;
 
@@ -25,9 +26,12 @@ export class SearchComponent implements OnInit {
     user: ''
   };
 
+  private userDetails: UserDetails;
+
 
   constructor(private router: Router,
               private api: ApiService,
+              private auth: AuthenticationService,
               private route:ActivatedRoute,
               private data: PlayerService
               ) { }
@@ -36,6 +40,10 @@ export class SearchComponent implements OnInit {
   ngOnInit(){
     console.log('search componente ngoninit')
     // this.getAllSearchData();
+    this.userDetails = this.auth.getUserDetails();
+  }
+
+  getSearchResults(){
     this.route.params.subscribe( params => {
       console.log('PARAMETRAI: ')
 
@@ -74,6 +82,7 @@ export class SearchComponent implements OnInit {
     });
   }
 
+
   onPlaylistClick(id){
     this.router.navigate(['/playlists/'+id]);
   }
@@ -89,6 +98,31 @@ export class SearchComponent implements OnInit {
     this.data.sendTrackEvent($event);
     // console.log('THIS TRACK INFO: ')
     // console.log(this.trackInfo)s
+  }
+
+  public deletePlaylist(data){
+    this.api.deletePlaylist(data)
+    .subscribe(res => {
+      console.log(res);
+    }, err => {
+      console.log(err);
+    });
+    this.getSearchResults();
+  }
+
+  public createPlaylist(){
+    this.playlistReq.user = this.userDetails._id;
+    console.log(this.playlistReq);
+    this.api.createPlaylist(this.playlistReq)
+    .subscribe(res => {
+      console.log(res);
+    }, err => {
+      console.log(err);
+    });
+    this.getSearchResults();
+    this.closeModal();
+
+
   }
 
 
